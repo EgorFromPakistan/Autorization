@@ -1,14 +1,6 @@
 package by.egorgutko.autorization.presentation;
 
-public class LoginPresenter {
+public class LoginPresenter extends BasePresenter<LoginActivity> {
 
-    private LoginActivity view;
 
-    public void attachView(LoginActivity loginActivity) {
-        view = loginActivity;
-    }
-
-    public void detachView() {
-        view = null;
-    }
 }
