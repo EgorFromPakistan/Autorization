@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Autorization</string>
-    <string name="eText">Введите имя </string>>
+    <string name="eText">Введите имя </string>
+    <string name="mButton">OK</string>
 </resources>
