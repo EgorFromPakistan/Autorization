@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        Intent intetent = new Intent(this,LoginActivity.class);
+        Intent intetent = new Intent(this,RecyclerViewActivity.class);
         startActivity(intetent);
     }
 }
