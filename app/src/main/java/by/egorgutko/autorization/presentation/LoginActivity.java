@@ -1,6 +1,6 @@
 package by.egorgutko.autorization.presentation;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import by.egorgutko.autorization.R;
