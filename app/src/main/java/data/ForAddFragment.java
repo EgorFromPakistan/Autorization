@@ -1,6 +1,7 @@
 package data;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import by.egorgutko.autorization.R;
 
-public class ForAddFragment extends Fragment {
+public class ForAddFragment extends Fragment implements View.OnClickListener {
 
     TextView textView;
     Button button;
@@ -22,10 +23,17 @@ public class ForAddFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.for_add, containre, false);
 
+        button = (Button)view.findViewById(R.id.button);
+
+        button.setOnClickListener(this);
 
         button =(Button) view.findViewById(R.id.button);
         textView = (TextView)view.findViewById(R.id.etext);
         return view;
     }
 
+    @Override
+    public void onClick(View view) {
+        //Intent intent = new Intent(getActivity(),)
+    }
 }
