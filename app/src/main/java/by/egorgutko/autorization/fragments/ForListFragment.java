@@ -74,7 +74,7 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Intent intent = new Intent(getActivity(), LoginActivity.class);
         //startActivity(intent);
-        navController.navigate(R.id.action_forAddFragment_to_listFragment);
+        navController.navigate(R.id.forAddFragment);
         return super.onOptionsItemSelected(item);
     }
 
