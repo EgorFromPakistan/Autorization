@@ -9,9 +9,9 @@
 
     <TextView
         android:id="@+id/mText"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/null_size_0dp"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
+        android:textSize="@dimen/text_size_22sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

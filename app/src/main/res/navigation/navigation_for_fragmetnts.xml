@@ -6,10 +6,14 @@
     app:startDestination="@id/forAddFragment">
     <fragment
         android:id="@+id/forAddFragment"
-        android:name="data.ForAddFragment"
-        android:label="ForAddFragment" />
+        android:name="by.egorgutko.autorization.fragments.ForAddFragment"
+        android:label="ForAddFragment" >
+        <action
+            android:id="@+id/action_forAddFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
     <fragment
         android:id="@+id/listFragment"
-        android:name="data.ListFragment"
+        android:name="by.egorgutko.autorization.fragments.ForListFragment"
         android:label="ListFragment" />
 </navigation>

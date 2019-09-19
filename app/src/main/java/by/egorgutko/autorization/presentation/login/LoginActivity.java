@@ -1,9 +1,12 @@
-package by.egorgutko.autorization.presentation;
+package by.egorgutko.autorization.presentation.login;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import by.egorgutko.autorization.R;
+import by.egorgutko.autorization.presentation.Main.MainActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -22,6 +26,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
    final String SAVED_TEXT = "saved_text";
 
+    ActionBar actionBar;
+
     LoginPresenter loginPresenter = new LoginPresenter();
     EditText editText;
     Button buttonOk;
@@ -29,6 +35,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#93E9FA"));
+        actionBar.setBackgroundDrawable(colorDrawable);
 
         //loadText();
         editText = (EditText)findViewById(R.id.mEditText);

@@ -1,4 +1,4 @@
-package data;
+package by.egorgutko.autorization.presentation.Main;
 
 
 import androidx.annotation.NonNull;
@@ -12,11 +12,11 @@ import java.util.ArrayList;
 
 import by.egorgutko.autorization.R;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapetrViewHolder> {
+public class AdapterForRecyclerView extends RecyclerView.Adapter<AdapterForRecyclerView.MyAdapetrViewHolder> {
 
     ArrayList<String> myArray;
 
-    public MyAdapter(ArrayList<String> myArray) {
+    public AdapterForRecyclerView(ArrayList<String> myArray) {
         this.myArray = myArray;
     }
 
@@ -34,7 +34,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapetrViewHolde
     @NonNull
     @Override
     public MyAdapetrViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_for_recycler_view, parent, false);
         return new MyAdapetrViewHolder(view);
     }
 

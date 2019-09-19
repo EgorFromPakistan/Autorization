@@ -1,4 +1,4 @@
-package by.egorgutko.autorization.presentation;
+package by.egorgutko.autorization.presentation.splash_screen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,12 +8,12 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import by.egorgutko.autorization.R;
+import by.egorgutko.autorization.presentation.login.LoginActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
     // Время в милесекундах, в течение которого будет отображаться Splash Screen
-    private final int SPLASH_DISPLAY_LENGTH = 6000;
-    final String SAVED_TEXT = "saved_text";
+    private final int SPLASH_DISPLAY_LENGTH = 600;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,18 +27,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
-
-                if (!hasVisited) {
-                    // По истечении времени, запускаем главный активити, а Splash Screen закрываем
                     Intent mainIntent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                     SplashScreenActivity.this.startActivity(mainIntent);
                     SplashScreenActivity.this.finish();
-                } else {
-                    Intent mainIntent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                    SplashScreenActivity.this.startActivity(mainIntent);
-                    SplashScreenActivity.this.finish();
-                }
             }
         }, SPLASH_DISPLAY_LENGTH);
     }

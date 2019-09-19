@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".presentation.LoginActivity">
+    android:padding="@dimen/padding_standart_16dp"
+    tools:context=".presentation.login.LoginActivity">
 
     <TextView
         android:id="@+id/mTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/eText"
-        android:textSize="20dp"
+        android:textSize="@dimen/text_size_22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,7 +23,7 @@
 
     <EditText
         android:id="@+id/mEditText"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/null_size_0dp"
         android:layout_height="wrap_content"
         android:hint="@string/eText"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,6 +33,7 @@
     <Button
         android:id="@+id/mButton"
         android:text="@string/mButton"
+        android:theme="@style/BlueButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="@+id/mEditText"

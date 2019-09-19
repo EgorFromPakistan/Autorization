@@ -1,4 +1,4 @@
-package by.egorgutko.autorization.presentation;
+package by.egorgutko.autorization.presentation.login;
 
 public interface LoginInterface {
     void exitApp();

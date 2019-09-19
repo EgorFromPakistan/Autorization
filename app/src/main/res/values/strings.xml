@@ -3,10 +3,10 @@
     <string name="eText">Введите имя </string>
     <string name="mButton">OK</string>
     <string name="textList">новый пункт</string>
-    <string name="logOf">log on</string>
+    <string name="logOf">LOG ON</string>
     <string name="myMeny">meny</string>
     <string name="tasks">введите текст</string>
     <string name="add">добавить</string>
-    <string name="toAdd">добавить</string>
+    <string name="toAdd">ДОБАВИТЬ</string>
     <string name="toSee">смотреть</string>
 </resources>

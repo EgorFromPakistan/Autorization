@@ -1,29 +1,21 @@
-package by.egorgutko.autorization.presentation;
+package by.egorgutko.autorization.presentation.Main;
 
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import by.egorgutko.autorization.R;
-import data.ListFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    //ListFragment listFragment = new ListFragment();
+    //ForListFragment listFragment = new ForListFragment();
 
     SharedPreferences sPref;
 
@@ -46,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.tView);
         textView.setOnClickListener(this);*/
         //setContentView(R.layout.list_activity);
-        setContentView(R.layout.check);
+        setContentView(R.layout.activity_main);
         loadText();
 
         //Intent intent = getIntent();
@@ -61,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         // button2 = (Button) findViewById(R.id.button1);
         //button2.setOnClickListener(this);
-        //fragment = new ListFragment();
+        //fragment = new ForListFragment();
         // navController = Navigation.findNavController(this,R.id.placeholder);
         /*fragmetManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmetManager.beginTransaction();
@@ -78,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
    /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.mymenu, menu);
+        getMenuInflater().inflate(R.menu.menu_for_navigation, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

@@ -3,20 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".presentation.MainActivity">
+    android:padding="@dimen/padding_standart_16dp"
+    tools:context=".presentation.Main.MainActivity">
 
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/null_size_0dp"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent"
-        tools:context=".presentation.MainActivity">
+        tools:context=".presentation.Main.MainActivity">
 
         <fragment
             android:id="@+id/nav_host_fragment"
@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/main_navigation" />
+            app:navGraph="@navigation/navigation_for_fragmetnts" />
 
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

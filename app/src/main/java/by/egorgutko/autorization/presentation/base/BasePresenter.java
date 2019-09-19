@@ -1,4 +1,4 @@
-package by.egorgutko.autorization.presentation;
+package by.egorgutko.autorization.presentation.base;
 
 public abstract class BasePresenter<TypeOfActivity> {
 

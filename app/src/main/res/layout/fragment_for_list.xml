@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.MainActivity">
+    tools:context=".presentation.Main.MainActivity">
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="@dimen/null_size_0dp"
         android:layout_height="wrap_content"
         android:text="@string/myMeny"
         android:id="@+id/mText"
@@ -17,21 +17,22 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/null_size_0dp"
+        android:layout_height="@dimen/null_size_0dp"
         app:layout_constraintBottom_toTopOf="@id/mButtonLogOn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mText" />
 
     <Button
-        android:layout_width="0dp"
+        android:layout_width="@dimen/null_size_0dp"
         android:layout_height="wrap_content"
         android:id="@+id/mButtonLogOn"
         android:text="@string/logOf"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:theme="@style/BlueButton"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

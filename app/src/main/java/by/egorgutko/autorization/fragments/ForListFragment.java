@@ -1,9 +1,10 @@
-package data;
+package by.egorgutko.autorization.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -22,39 +23,42 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import by.egorgutko.autorization.R;
-import by.egorgutko.autorization.presentation.LoginActivity;
-import by.egorgutko.autorization.presentation.MainActivity;
+import by.egorgutko.autorization.presentation.Main.AdapterForRecyclerView;
+import by.egorgutko.autorization.presentation.login.LoginActivity;
 
-public class ListFragment extends Fragment {
+public class ForListFragment extends Fragment implements View.OnClickListener {
 
     NavController navController;
     RecyclerView recyclerView;
     Button mButton;
     String myNotes;
     TextView mTextView;
+    ActionBar actionBar;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup containre, Bundle saveInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_list, containre, false);
+        View view = inflater.inflate(R.layout.fragment_for_list, containre, false);
         setHasOptionsMenu(true);
+
         mTextView = (TextView) view.findViewById(R.id.mText);
         recyclerView = (RecyclerView) view.findViewById(R.id.listRecyclerView);
         navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         mButton = (Button) view.findViewById(R.id.mButtonLogOn);
+        mButton.setOnClickListener(this);
 
         //mButton.setOnClickListener(this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         ArrayList<String> mArray = new ArrayList<>();
-        if (!getArguments().getString("arg").equals(""))
-        mArray.add(getArguments().getString("arg"));
+        if (getArguments() != null && !getArguments().getString("arg").equals(""))
+            mArray.add(getArguments().getString("arg"));
         mArray.add("number1");
         mArray.add("number2");
         mArray.add("number3");
 
 
-        MyAdapter myAdapter = new MyAdapter(mArray);
+        AdapterForRecyclerView myAdapter = new AdapterForRecyclerView(mArray);
 
         recyclerView.setAdapter(myAdapter);
 
@@ -63,16 +67,22 @@ public class ListFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.mymenu, menu);
+        inflater.inflate(R.menu.menu_for_navigation, menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Intent intent = new Intent(getActivity(), LoginActivity.class);
         //startActivity(intent);
-        navController.navigate(R.id.forAddFragment);
+        navController.navigate(R.id.action_forAddFragment_to_listFragment);
         return super.onOptionsItemSelected(item);
     }
 
 
+    @Override
+    public void onClick(View view) {
+
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intent);
+    }
 }
