@@ -1,6 +1,7 @@
 package by.egorgutko.autorization.fragments;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -11,6 +12,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -31,9 +34,10 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
     NavController navController;
     RecyclerView recyclerView;
     Button mButton;
-    String myNotes;
     TextView mTextView;
-    ActionBar actionBar;
+    SharedPreferences preferences;
+
+    final String SAVED_TEXT = "saved_text";
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup containre, Bundle saveInstanceState) {
 
@@ -45,6 +49,8 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
         navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         mButton = (Button) view.findViewById(R.id.mButtonLogOn);
         mButton.setOnClickListener(this);
+
+        mTextView.setText("Привет, "+onLoad());
 
         //mButton.setOnClickListener(this);
 
@@ -76,6 +82,15 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
         //startActivity(intent);
         navController.navigate(R.id.forAddFragment);
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public String onLoad(){
+        preferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        String savedText = preferences.getString(SAVED_TEXT, "");
+        Toast.makeText(getActivity().getApplicationContext(), savedText, Toast.LENGTH_SHORT).show();
+
+        return savedText;
     }
 
 

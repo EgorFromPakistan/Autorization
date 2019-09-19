@@ -17,11 +17,6 @@ public class MainActivity extends AppCompatActivity {
 
     //ForListFragment listFragment = new ForListFragment();
 
-    SharedPreferences sPref;
-
-   // ForFinalString forFinalString;
-
-    final String SAVED_TEXT = "saved_text";
 
 
     FragmentManager fragmetManager;
@@ -39,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         textView.setOnClickListener(this);*/
         //setContentView(R.layout.list_activity);
         setContentView(R.layout.activity_main);
-        loadText();
 
         //Intent intent = getIntent();
         /*if (!intent.getStringExtra("name").equals("")) {
@@ -61,11 +55,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();*/
     }
 
-    void loadText() {
-        sPref = getSharedPreferences("MyPref", MODE_PRIVATE);;
-        String savedText = sPref.getString(SAVED_TEXT, "");
-        Toast.makeText(this, savedText, Toast.LENGTH_SHORT).show();
-    }
 
 
    /* @Override
