@@ -29,6 +29,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import by.egorgutko.autorization.R;
+import by.egorgutko.autorization.data.AuthorizationPreferences;
 import by.egorgutko.autorization.presentation.Main.AdapterForRecyclerView;
 import by.egorgutko.autorization.presentation.login.LoginActivity;
 
@@ -46,6 +47,8 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
 
     final String SAVED_TEXT = "saved_text";
 
+    AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
+
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup containre, Bundle saveInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_for_list, containre, false);
@@ -57,14 +60,17 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
         mButton = (Button) view.findViewById(R.id.mButtonLogOn);
         mButton.setOnClickListener(this);
 
-        mTextView.setText("Привет, "+onLoadName());
+        authorizationPreferences.init(getActivity().getApplicationContext());
+        mTextView.setText("Привет, "+authorizationPreferences.getUserName());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         mArray = new ArrayList<>();
 
 
-        onLoadSet();
+        authorizationPreferences.getSet(authorizationPreferences.getUserName(),mArray);
+
+        //onLoadSet();
 
         AdapterForRecyclerView myAdapter = new AdapterForRecyclerView(mArray);
 
@@ -87,7 +93,7 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    public String onLoadName(){
+   /* public String onLoadName(){
         preferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         String savedText = preferences.getString(SAVED_TEXT, "");
         Toast.makeText(getActivity().getApplicationContext(), savedText, Toast.LENGTH_SHORT).show();
@@ -95,14 +101,17 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
         return savedText;
     }
 
+
     public void onLoadSet(){
         preferences = getActivity().getSharedPreferences(onLoadName(),MODE_PRIVATE);
         Set<String>  set = preferences.getStringSet(onLoadName(),new HashSet<String>());
-        String savedText = preferences.getString(SAVED_TEXT, "");
+        //String savedText = preferences.getString(SAVED_TEXT, "");
         for(String r : set) {
             mArray.add(r);
         };
     }
+
+    */
 
     @Override
     public void onClick(View view) {

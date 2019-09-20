@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import by.egorgutko.autorization.R;
+import by.egorgutko.autorization.data.AuthorizationPreferences;
 import by.egorgutko.autorization.presentation.Main.MainActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     SharedPreferences preferences;
     ActionBar actionBar;
     final String SAVED_TEXT = "saved_text";
+    AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
 
     LoginPresenter loginPresenter = new LoginPresenter();
     EditText editText;
@@ -37,6 +39,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#93E9FA"));
         actionBar.setBackgroundDrawable(colorDrawable);
 
+        //authorizationPreferences.init(this);
+        //authorizationPreferences.addNameOfUser();
         //loadText();
         editText = (EditText)findViewById(R.id.mEditText);
         buttonOk =(Button) findViewById(R.id.mButton);
@@ -48,10 +52,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("name", editText.getText().toString());
-        preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(SAVED_TEXT,editText.getText().toString());
-        editor.apply();
+        authorizationPreferences.init(this);
+        authorizationPreferences.addNameOfUser(SAVED_TEXT,editText.getText().toString());
+        //preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        //SharedPreferences.Editor editor = preferences.edit();
+        //editor.putString(SAVED_TEXT,editText.getText().toString());
+        //editor.apply();
         startActivity(intent);
     }
 }
