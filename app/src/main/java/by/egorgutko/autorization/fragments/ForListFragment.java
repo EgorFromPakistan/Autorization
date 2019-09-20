@@ -45,7 +45,7 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
 
     ArrayList<String> mArray;
 
-    final String SAVED_TEXT = "saved_text";
+    //final String SAVED_TEXT = "saved_text";
 
     AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
 

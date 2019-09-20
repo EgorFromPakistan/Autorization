@@ -35,7 +35,7 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
     Set<String> set ;//= new HashSet<>();
 
 
-    final String SAVED_TEXT = "saved_text";
+    //final String SAVED_TEXT = "saved_text";
 
     AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
 
