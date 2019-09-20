@@ -13,7 +13,7 @@ import by.egorgutko.autorization.presentation.login.LoginActivity;
 public class SplashScreenActivity extends AppCompatActivity {
 
     // Время в милесекундах, в течение которого будет отображаться Splash Screen
-    private final int SPLASH_DISPLAY_LENGTH = 600;
+    private final int SPLASH_DISPLAY_LENGTH = 300;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

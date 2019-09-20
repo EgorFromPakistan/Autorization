@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,10 +25,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import by.egorgutko.autorization.R;
 import by.egorgutko.autorization.presentation.Main.AdapterForRecyclerView;
 import by.egorgutko.autorization.presentation.login.LoginActivity;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class ForListFragment extends Fragment implements View.OnClickListener {
 
@@ -50,18 +55,27 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
         mButton = (Button) view.findViewById(R.id.mButtonLogOn);
         mButton.setOnClickListener(this);
 
-        mTextView.setText("Привет, "+onLoad());
+        mTextView.setText("Привет, "+onLoadName());
 
         //mButton.setOnClickListener(this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         ArrayList<String> mArray = new ArrayList<>();
-        if (getArguments() != null && !getArguments().getString("arg").equals(""))
-            mArray.add(getArguments().getString("arg"));
-        mArray.add("number1");
-        mArray.add("number2");
-        mArray.add("number3");
+
+        preferences = getActivity().getSharedPreferences(onLoadName(),MODE_PRIVATE);
+        Set<String>  set = preferences.getStringSet(onLoadName(),new HashSet<String>());
+        String savedText = preferences.getString(SAVED_TEXT, "");
+        for(String r : set) {
+            mArray.add(r);
+        }
+
+
+       // if (getArguments() != null && !getArguments().getString("arg").equals(""))
+        //    mArray.add(getArguments().getString("arg"));
+       // mArray.add("number1");
+       // mArray.add("number2");
+       // mArray.add("number3");
 
 
         AdapterForRecyclerView myAdapter = new AdapterForRecyclerView(mArray);
@@ -85,9 +99,21 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    public String onLoad(){
+    public String onLoadName(){
         preferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         String savedText = preferences.getString(SAVED_TEXT, "");
+        Toast.makeText(getActivity().getApplicationContext(), savedText, Toast.LENGTH_SHORT).show();
+
+        return savedText;
+    }
+
+    public String onLoadSet(){
+        preferences = getActivity().getSharedPreferences(onLoadName(),MODE_PRIVATE);
+        Set<String>  set = preferences.getStringSet(onLoadName(),new HashSet<String>());
+        String savedText = preferences.getString(SAVED_TEXT, "");
+        for(String r : set) {
+            Log.i("Share", "Taska: " + r);
+        }
         Toast.makeText(getActivity().getApplicationContext(), savedText, Toast.LENGTH_SHORT).show();
 
         return savedText;
@@ -96,7 +122,6 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
     }

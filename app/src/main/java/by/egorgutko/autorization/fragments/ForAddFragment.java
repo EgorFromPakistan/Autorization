@@ -18,9 +18,12 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import by.egorgutko.autorization.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class ForAddFragment extends Fragment implements View.OnClickListener {
 
@@ -28,7 +31,7 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
     Button button;
     NavController navController;
     SharedPreferences preferences;
-    Set<String> set;
+    Set<String> set = new HashSet<>();
 
 
     final String SAVED_TEXT = "saved_text";
@@ -61,11 +64,23 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
 
         return savedText;
     }
+
+    public void putSet(){
+        preferences = getActivity().getSharedPreferences(onLoad(),MODE_PRIVATE);
+        SharedPreferences.Editor ed = preferences.edit();
+        set.add(editText.getText().toString());
+      //  set.add(editText.getText().toString()+"1");
+        //set.add(editText.getText().toString()+"2");
+        ed.putStringSet(onLoad(),set);
+        ed.commit();
+    }
+
+
     @Override
     public void onClick(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("arg", editText.getText().toString());
-
+        putSet();
         navController.navigate(R.id.action_forAddFragment_to_listFragment,bundle);
         //navController.navigate(R.id.listFragment, bundle);
         //Intent intent = new Intent(getActivity(),)
