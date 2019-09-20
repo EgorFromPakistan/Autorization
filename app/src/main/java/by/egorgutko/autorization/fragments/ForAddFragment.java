@@ -31,7 +31,7 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
     Button button;
     NavController navController;
     SharedPreferences preferences;
-    Set<String> set = new HashSet<>();
+    Set<String> set ;//= new HashSet<>();
 
 
     final String SAVED_TEXT = "saved_text";
@@ -40,11 +40,6 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup containre, Bundle saveInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_for_add, containre, false);
-
-       /* actionBar = mainActivity.getSupportActionBar();
-        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#93E9FA"));
-        actionBar.setBackgroundDrawable(colorDrawable);*/
-
 
         navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
@@ -57,7 +52,7 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    public String onLoad(){
+    public String onLoadNameUser() {
         preferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         String savedText = preferences.getString(SAVED_TEXT, "");
         Toast.makeText(getActivity().getApplicationContext(), savedText, Toast.LENGTH_SHORT).show();
@@ -65,13 +60,14 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
         return savedText;
     }
 
-    public void putSet(){
-        preferences = getActivity().getSharedPreferences(onLoad(),MODE_PRIVATE);
+    public void putSet() {
+        preferences = getActivity().getSharedPreferences(onLoadNameUser(), MODE_PRIVATE);
+        set= preferences.getStringSet(onLoadNameUser(), new HashSet<String>());
         SharedPreferences.Editor ed = preferences.edit();
         set.add(editText.getText().toString());
-      //  set.add(editText.getText().toString()+"1");
+        //  set.add(editText.getText().toString()+"1");
         //set.add(editText.getText().toString()+"2");
-        ed.putStringSet(onLoad(),set);
+        ed.putStringSet(onLoadNameUser(), set);
         ed.commit();
     }
 
@@ -81,7 +77,8 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
         Bundle bundle = new Bundle();
         bundle.putString("arg", editText.getText().toString());
         putSet();
-        navController.navigate(R.id.action_forAddFragment_to_listFragment,bundle);
+        //navController.navigate(R.id.action_forAddFragment_to_listFragment,bundle);
+        navController.navigate(R.id.listFragment);
         //navController.navigate(R.id.listFragment, bundle);
         //Intent intent = new Intent(getActivity(),)
     }

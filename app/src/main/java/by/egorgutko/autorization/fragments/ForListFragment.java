@@ -42,6 +42,8 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
     TextView mTextView;
     SharedPreferences preferences;
 
+    ArrayList<String> mArray;
+
     final String SAVED_TEXT = "saved_text";
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup containre, Bundle saveInstanceState) {
@@ -57,26 +59,12 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
 
         mTextView.setText("Привет, "+onLoadName());
 
-        //mButton.setOnClickListener(this);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        ArrayList<String> mArray = new ArrayList<>();
-
-        preferences = getActivity().getSharedPreferences(onLoadName(),MODE_PRIVATE);
-        Set<String>  set = preferences.getStringSet(onLoadName(),new HashSet<String>());
-        String savedText = preferences.getString(SAVED_TEXT, "");
-        for(String r : set) {
-            mArray.add(r);
-        }
+        mArray = new ArrayList<>();
 
 
-       // if (getArguments() != null && !getArguments().getString("arg").equals(""))
-        //    mArray.add(getArguments().getString("arg"));
-       // mArray.add("number1");
-       // mArray.add("number2");
-       // mArray.add("number3");
-
+        onLoadSet();
 
         AdapterForRecyclerView myAdapter = new AdapterForRecyclerView(mArray);
 
@@ -94,7 +82,7 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Intent intent = new Intent(getActivity(), LoginActivity.class);
         //startActivity(intent);
-        navController.navigate(R.id.forAddFragment);
+        navController.navigate(R.id.action_listFragment_to_forAddFragment);
         return super.onOptionsItemSelected(item);
     }
 
@@ -107,18 +95,14 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
         return savedText;
     }
 
-    public String onLoadSet(){
+    public void onLoadSet(){
         preferences = getActivity().getSharedPreferences(onLoadName(),MODE_PRIVATE);
         Set<String>  set = preferences.getStringSet(onLoadName(),new HashSet<String>());
         String savedText = preferences.getString(SAVED_TEXT, "");
         for(String r : set) {
-            Log.i("Share", "Taska: " + r);
-        }
-        Toast.makeText(getActivity().getApplicationContext(), savedText, Toast.LENGTH_SHORT).show();
-
-        return savedText;
+            mArray.add(r);
+        };
     }
-
 
     @Override
     public void onClick(View view) {
