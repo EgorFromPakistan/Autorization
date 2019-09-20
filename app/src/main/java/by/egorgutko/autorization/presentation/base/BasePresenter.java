@@ -1,14 +1,14 @@
 package by.egorgutko.autorization.presentation.base;
 
-public abstract class BasePresenter<TypeOfActivity> {
+public abstract class BasePresenter<View> {
 
-    TypeOfActivity mActivity;
+    View mView;
 
-    public void attachView(TypeOfActivity typeOfActivity) {
-        mActivity = typeOfActivity;
+    public void attachView(View view) {
+        mView = view;
     }
 
     public void detachView() {
-        mActivity = null;
+        mView = null;
     }
 }

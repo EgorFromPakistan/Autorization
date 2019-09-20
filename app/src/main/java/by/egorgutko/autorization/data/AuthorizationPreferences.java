@@ -4,6 +4,7 @@ package by.egorgutko.autorization.data;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
@@ -16,64 +17,56 @@ import static android.content.Context.MODE_PRIVATE;
 public class AuthorizationPreferences {
 
 
+    private static final String SAVED_TEXT = "saved_text";
 
-    public static final String SAVED_TEXT = "saved_text";
+    private SharedPreferences settings = null;
+    private Editor editor = null;
+    private Context context = null;
 
-    private static SharedPreferences settings = null;
-    private static SharedPreferences.Editor editor = null;
-    private static Context context = null;
+    public ArrayList<String> mArray;// = new ArrayList<>();
+    private Set<String> set;
 
-    public static ArrayList<String> mArray;// = new ArrayList<>();
-    public static Set<String> set;
-
-    public static void init( Context cntxt ){
+    public void init(Context cntxt) {
         context = cntxt;
     }
 
-    private static void init(){
-        settings = context.getSharedPreferences(SAVED_TEXT, Context.MODE_PRIVATE);
-        editor = settings.edit();
-    }
-
-
-
-    public static void addNameOfUser( String name, String value ){
-        if( settings == null ){
+    public void addNameOfUser(String name) {
+        if (settings == null) {
             settings = PreferenceManager.getDefaultSharedPreferences(context);
             editor = settings.edit();
         }
-        editor.putString(name,value);
+        editor.putString(SAVED_TEXT, name);
         editor.apply();
     }
 
-    public static String getUserName(){
-        if( settings == null ){
+    public String getUserName() {
+        if (settings == null) {
             settings = PreferenceManager.getDefaultSharedPreferences(context);
         }
-        return settings.getString( SAVED_TEXT, "" );
+        return settings.getString(SAVED_TEXT, "");
     }
 
-    public static void getSet(String name, ArrayList mArray){
-        if( settings == null ){
-            settings = context.getSharedPreferences(name,MODE_PRIVATE);
+    public ArrayList getTaskList(String name) {
+        if (settings == null) {
+            settings = context.getSharedPreferences(name, MODE_PRIVATE);
         }
         //preferences = getActivity().getSharedPreferences(onLoadName(),MODE_PRIVATE);
-        Set<String> set = settings.getStringSet(name,new HashSet<String>());
-        for(String r : set) {
-            mArray.add(r);
-        };
+        Set<String> set = settings.getStringSet(name, new HashSet<String>());
+//        mArray.addAll(set);
+        return new ArrayList();
     }
 
-    public static void putSet(String name, String task) {
-        if( settings == null ){
-            settings = context.getSharedPreferences(name,MODE_PRIVATE);
+    public void putSet(String task) {
+        String userName = getUserName();
+        if (settings == null) {
+            settings = context.getSharedPreferences(userName, MODE_PRIVATE);
         }
         //preferences = getActivity().getSharedPreferences(onLoadNameUser(), MODE_PRIVATE);
-        set= settings.getStringSet(name, new HashSet<String>());
-        SharedPreferences.Editor ed = settings.edit();
+        set = settings.getStringSet(userName, new HashSet<String>());
+        Editor ed = settings.edit();
         set.add(task);
-        ed.putStringSet(name, set);
-        ed.commit();
+        ed.putStringSet(userName, set);
+        ed.apply();
     }
 
 

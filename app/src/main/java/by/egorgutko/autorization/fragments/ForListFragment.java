@@ -45,9 +45,12 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
 
     ArrayList<String> mArray;
 
-    //final String SAVED_TEXT = "saved_text";
+    String nameOfUser;
 
-    AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
+    //final String SAVED_TEXT = "saved_text";
+    ForListFragmentPresenter forListFragmentPresenter = new ForListFragmentPresenter();
+
+    //AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup containre, Bundle saveInstanceState) {
 
@@ -58,17 +61,26 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
         recyclerView = (RecyclerView) view.findViewById(R.id.listRecyclerView);
         navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         mButton = (Button) view.findViewById(R.id.mButtonLogOn);
-        mButton.setOnClickListener(this);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        authorizationPreferences.init(getActivity().getApplicationContext());
-        mTextView.setText("Привет, "+authorizationPreferences.getUserName());
+        //authorizationPreferences.init(getActivity().getApplicationContext());
+        //nameOfUser = authorizationPreferences.getUserName();
+        nameOfUser = forListFragmentPresenter.getCurrentUserName(getActivity().getApplicationContext());
+        mTextView.setText("Привет, " + nameOfUser);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         mArray = new ArrayList<>();
 
 
-        authorizationPreferences.getSet(authorizationPreferences.getUserName(),mArray);
+        forListFragmentPresenter.getSetForList(nameOfUser,mArray);
+        //authorizationPreferences.getTaskList(nameOfUser, mArray);
 
         //onLoadSet();
 

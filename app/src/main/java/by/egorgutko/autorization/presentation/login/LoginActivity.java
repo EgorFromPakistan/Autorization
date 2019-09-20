@@ -26,9 +26,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     SharedPreferences preferences;
     ActionBar actionBar;
     final String SAVED_TEXT = "saved_text";
-    AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
-
+    //AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
     LoginPresenter loginPresenter = new LoginPresenter();
+
     EditText editText;
     Button buttonOk;
     @Override
@@ -51,9 +51,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("name", editText.getText().toString());
-        authorizationPreferences.init(this);
-        authorizationPreferences.addNameOfUser(SAVED_TEXT,editText.getText().toString());
+        //intent.putExtra("name", editText.getText().toString());
+        loginPresenter.addName(this,SAVED_TEXT,editText.getText().toString());
+       // authorizationPreferences.init(this);
+       // authorizationPreferences.addNameOfUser(SAVED_TEXT,editText.getText().toString());
         //preferences = PreferenceManager.getDefaultSharedPreferences(this);
         //SharedPreferences.Editor editor = preferences.edit();
         //editor.putString(SAVED_TEXT,editText.getText().toString());

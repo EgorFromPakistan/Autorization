@@ -33,17 +33,18 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
     NavController navController;
     SharedPreferences preferences;
     Set<String> set ;//= new HashSet<>();
+    ForAddActivityPresenter forAddActivityPresenter = new ForAddActivityPresenter();
 
 
     //final String SAVED_TEXT = "saved_text";
 
-    AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
+    //AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup containre, Bundle saveInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_for_add, containre, false);
 
-        authorizationPreferences.init(getActivity().getApplicationContext());
+        //authorizationPreferences.init(getActivity().getApplicationContext());
 
         navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
@@ -79,7 +80,8 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("arg", editText.getText().toString());
-        authorizationPreferences.putSet(authorizationPreferences.getUserName(),editText.getText().toString());
+        forAddActivityPresenter.putSetFunc(getActivity().getApplicationContext(),editText.getText().toString());
+        //authorizationPreferences.putSet(editText.getText().toString());
        //putSet();
         //navController.navigate(R.id.action_forAddFragment_to_listFragment,bundle);
         navController.navigate(R.id.listFragment);
