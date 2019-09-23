@@ -1,6 +1,8 @@
 package by.egorgutko.autorization.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,12 +13,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.Objects;
 
 import by.egorgutko.autorization.R;
 import by.egorgutko.autorization.presentation.Main.AdapterForRecyclerView;
@@ -28,13 +34,13 @@ public class ForListFragment extends Fragment {
     private RecyclerView recyclerView;
     private Button mButton;
     private TextView mTextView;
-    public String nameOfUser;
+    private String nameOfUser;
 
-    //final String SAVED_TEXT = "saved_text";
-    ForListFragmentPresenter forListFragmentPresenter = new ForListFragmentPresenter();
+    private ForListFragmentPresenter forListFragmentPresenter = new ForListFragmentPresenter();
 
-    //AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
 
+    @SuppressLint("SetTextI18n")
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup containre, Bundle saveInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_for_list, containre, false);
@@ -42,13 +48,12 @@ public class ForListFragment extends Fragment {
 
         mTextView = (TextView) view.findViewById(R.id.mText);
         recyclerView = (RecyclerView) view.findViewById(R.id.listRecyclerView);
-        navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+        navController = Navigation.findNavController(Objects.requireNonNull(getActivity()), R.id.nav_host_fragment);
         mButton = (Button) view.findViewById(R.id.mButtonLogOn);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // startActivity(new Intent(getActivity(),LoginActivity.class).addFlags(
-                //Intent.FLAG_ACTIVITY_CLEAR_TOP));
+
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -75,12 +80,12 @@ public class ForListFragment extends Fragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_for_navigation, menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // Intent intent = new Intent(getActivity(), LoginActivity.class);
         //startActivity(intent);
         navController.navigate(R.id.action_listFragment_to_forAddFragment);
