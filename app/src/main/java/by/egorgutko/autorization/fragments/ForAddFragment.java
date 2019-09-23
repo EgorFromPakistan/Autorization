@@ -80,11 +80,12 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("arg", editText.getText().toString());
-        forAddActivityPresenter.putSetFunc(getActivity().getApplicationContext(),editText.getText().toString());
+        forAddActivityPresenter.putFunc(getActivity().getApplicationContext(),editText.getText().toString());
         //authorizationPreferences.putSet(editText.getText().toString());
        //putSet();
         //navController.navigate(R.id.action_forAddFragment_to_listFragment,bundle);
-        navController.navigate(R.id.listFragment);
+        //navController.navigate(R.id.listFragment);
+        navController.popBackStack();
         //navController.navigate(R.id.listFragment, bundle);
         //Intent intent = new Intent(getActivity(),)
     }

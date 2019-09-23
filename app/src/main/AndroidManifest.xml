@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
 
 
-        <activity android:name=".presentation.login.LoginActivity"/>
+        <activity android:name=".presentation.login.LoginActivity" />
 
         <activity android:name=".presentation.splash_screen.SplashScreenActivity">
             <intent-filter>

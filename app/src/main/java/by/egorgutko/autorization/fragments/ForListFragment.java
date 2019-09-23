@@ -1,5 +1,6 @@
 package by.egorgutko.autorization.fragments;
 
+import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -35,17 +36,17 @@ import by.egorgutko.autorization.presentation.login.LoginActivity;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class ForListFragment extends Fragment implements View.OnClickListener {
+public class ForListFragment extends Fragment {
 
-    NavController navController;
-    RecyclerView recyclerView;
-    Button mButton;
-    TextView mTextView;
-    SharedPreferences preferences;
+    private NavController navController;
+    private RecyclerView recyclerView;
+    private Button mButton;
+    private TextView mTextView;
+    private SharedPreferences preferences;
 
-    ArrayList<String> mArray;
+    private ArrayList<String> mArray;
 
-    String nameOfUser;
+    private String nameOfUser;
 
     //final String SAVED_TEXT = "saved_text";
     ForListFragmentPresenter forListFragmentPresenter = new ForListFragmentPresenter();
@@ -64,7 +65,10 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+               // startActivity(new Intent(getActivity(),LoginActivity.class).addFlags(
+                //Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
@@ -78,13 +82,11 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
 
         mArray = new ArrayList<>();
 
-
-        forListFragmentPresenter.getSetForList(nameOfUser,mArray);
         //authorizationPreferences.getTaskList(nameOfUser, mArray);
 
         //onLoadSet();
 
-        AdapterForRecyclerView myAdapter = new AdapterForRecyclerView(mArray);
+        AdapterForRecyclerView myAdapter = new AdapterForRecyclerView(forListFragmentPresenter.getSetForList(nameOfUser));
 
         recyclerView.setAdapter(myAdapter);
 
@@ -125,9 +127,4 @@ public class ForListFragment extends Fragment implements View.OnClickListener {
 
     */
 
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
-        startActivity(intent);
-    }
 }

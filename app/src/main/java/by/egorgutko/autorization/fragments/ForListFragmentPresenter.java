@@ -16,7 +16,8 @@ public class ForListFragmentPresenter extends BasePresenter<ForListFragment> {
        return authorizationPreferences.getUserName();
     }
 
-    public void  getSetForList(String name, ArrayList arrayList){
+    public ArrayList  getSetForList(String name){
+        return authorizationPreferences.getTaskList(name);
 //        authorizationPreferences.getTaskList(name, arrayList);
     }
 }

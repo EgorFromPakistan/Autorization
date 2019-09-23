@@ -53,8 +53,19 @@ public class AuthorizationPreferences {
         //preferences = getActivity().getSharedPreferences(onLoadName(),MODE_PRIVATE);
         Set<String> set = settings.getStringSet(name, new HashSet<String>());
 //        mArray.addAll(set);
-        return new ArrayList();
+        return new ArrayList(set);
     }
+
+    /*public Set getTasks(String name) {
+        if (settings == null) {
+            settings = context.getSharedPreferences(name, MODE_PRIVATE);
+        }
+        //preferences = getActivity().getSharedPreferences(onLoadName(),MODE_PRIVATE);
+        Set<String> set = settings.getStringSet(name, new HashSet<String>());
+//        mArray.addAll(set);
+        return set;
+    }
+     */
 
     public void putSet(String task) {
         String userName = getUserName();

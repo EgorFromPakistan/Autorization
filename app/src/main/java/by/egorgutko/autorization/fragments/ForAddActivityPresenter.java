@@ -8,7 +8,7 @@ import by.egorgutko.autorization.presentation.base.BasePresenter;
 public class ForAddActivityPresenter extends BasePresenter<ForAddFragment> {
     AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
 
-   public void putSetFunc(Context context, String name){
+   public void putFunc(Context context, String name){
        authorizationPreferences.init(context);
        authorizationPreferences.putSet(name);
     }
