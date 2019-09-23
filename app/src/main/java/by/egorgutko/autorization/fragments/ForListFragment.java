@@ -1,20 +1,7 @@
 package by.egorgutko.autorization.fragments;
 
-import android.app.ListActivity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,18 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import by.egorgutko.autorization.R;
-import by.egorgutko.autorization.data.AuthorizationPreferences;
 import by.egorgutko.autorization.presentation.Main.AdapterForRecyclerView;
 import by.egorgutko.autorization.presentation.login.LoginActivity;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class ForListFragment extends Fragment {
 

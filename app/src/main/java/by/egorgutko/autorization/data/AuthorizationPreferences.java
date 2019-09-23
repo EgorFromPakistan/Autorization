@@ -1,13 +1,11 @@
 package by.egorgutko.autorization.data;
 
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,12 +17,11 @@ public class AuthorizationPreferences {
 
 
     private static final String SAVED_TEXT = "saved_text";
+    private static final String LOG_CAT = "myLog";
 
     private SharedPreferences settings = null;
     private Editor editor = null;
     private Context context = null;
-
-    public ArrayList<String> mArray;// = new ArrayList<>();
     private Set<String> set;
 
     public void init(Context cntxt) {
@@ -54,6 +51,7 @@ public class AuthorizationPreferences {
         //preferences = getActivity().getSharedPreferences(onLoadName(),MODE_PRIVATE);
         Set<String> set = settings.getStringSet(name, new HashSet<String>());
 //        mArray.addAll(set);
+        Log.d(LOG_CAT, "set = " + " " + set);
         return new ArrayList(set);
     }
 
@@ -76,10 +74,13 @@ public class AuthorizationPreferences {
         //preferences = getActivity().getSharedPreferences(onLoadNameUser(), MODE_PRIVATE);
         set = settings.getStringSet(userName, new HashSet<String>());
         Editor ed = settings.edit();
-        set.add(task);
-        ed.putStringSet(userName, set);
+        Set<String> doubleSet = new HashSet<>(set);
+        doubleSet.add(task);
+        ed.putStringSet(userName, doubleSet);
         ed.apply();
-        //Log.d("hh", set.size());
+        Log.d(LOG_CAT, "doubleSet_after_put = " + " " + doubleSet);
+        Log.d(LOG_CAT, "set_after_put = " + " " + set);
+        Log.d(LOG_CAT, "size = " + " " + Integer.toString(set.size()));
     }
 
 
