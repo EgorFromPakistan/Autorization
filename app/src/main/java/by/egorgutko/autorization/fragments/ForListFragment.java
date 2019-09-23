@@ -42,11 +42,7 @@ public class ForListFragment extends Fragment {
     private RecyclerView recyclerView;
     private Button mButton;
     private TextView mTextView;
-    private SharedPreferences preferences;
-
-    private ArrayList<String> mArray;
-
-    private String nameOfUser;
+    public String nameOfUser;
 
     //final String SAVED_TEXT = "saved_text";
     ForListFragmentPresenter forListFragmentPresenter = new ForListFragmentPresenter();
@@ -80,7 +76,6 @@ public class ForListFragment extends Fragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        mArray = new ArrayList<>();
 
         //authorizationPreferences.getTaskList(nameOfUser, mArray);
 

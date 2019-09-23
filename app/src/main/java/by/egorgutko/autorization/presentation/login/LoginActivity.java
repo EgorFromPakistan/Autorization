@@ -51,6 +51,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         //intent.putExtra("name", editText.getText().toString());
         loginPresenter.addName(this,SAVED_TEXT,editText.getText().toString());
        // authorizationPreferences.init(this);

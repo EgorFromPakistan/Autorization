@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -78,6 +79,7 @@ public class AuthorizationPreferences {
         set.add(task);
         ed.putStringSet(userName, set);
         ed.apply();
+        //Log.d("hh", set.size());
     }
 
 

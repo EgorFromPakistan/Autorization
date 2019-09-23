@@ -28,11 +28,9 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class ForAddFragment extends Fragment implements View.OnClickListener {
 
-    EditText editText;
-    Button button;
-    NavController navController;
-    SharedPreferences preferences;
-    Set<String> set ;//= new HashSet<>();
+    private EditText editText;
+    private Button button;
+    private NavController navController;
     ForAddActivityPresenter forAddActivityPresenter = new ForAddActivityPresenter();
 
 
