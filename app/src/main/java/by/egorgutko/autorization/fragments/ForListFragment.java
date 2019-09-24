@@ -60,19 +60,11 @@ public class ForListFragment extends Fragment {
             }
         });
 
-        //authorizationPreferences.init(getActivity().getApplicationContext());
-        //nameOfUser = authorizationPreferences.getUserName();
         nameOfUser = forListFragmentPresenter.getCurrentUserName(getActivity().getApplicationContext());
         mTextView.setText("Привет, " + nameOfUser);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-        //authorizationPreferences.getTaskList(nameOfUser, mArray);
-
-        //onLoadSet();
-
-        AdapterForRecyclerView myAdapter = new AdapterForRecyclerView(forListFragmentPresenter.getSetForList(nameOfUser));
+        AdapterForRecyclerView myAdapter = new AdapterForRecyclerView(forListFragmentPresenter.getSetForList(getActivity().getApplicationContext()));
 
         recyclerView.setAdapter(myAdapter);
 
@@ -86,31 +78,9 @@ public class ForListFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        // Intent intent = new Intent(getActivity(), LoginActivity.class);
-        //startActivity(intent);
         navController.navigate(R.id.action_listFragment_to_forAddFragment);
         return super.onOptionsItemSelected(item);
     }
 
-
-   /* public String onLoadName(){
-        preferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        String savedText = preferences.getString(SAVED_TEXT, "");
-        Toast.makeText(getActivity().getApplicationContext(), savedText, Toast.LENGTH_SHORT).show();
-
-        return savedText;
-    }
-
-
-    public void onLoadSet(){
-        preferences = getActivity().getSharedPreferences(onLoadName(),MODE_PRIVATE);
-        Set<String>  set = preferences.getStringSet(onLoadName(),new HashSet<String>());
-        //String savedText = preferences.getString(SAVED_TEXT, "");
-        for(String r : set) {
-            mArray.add(r);
-        };
-    }
-
-    */
 
 }

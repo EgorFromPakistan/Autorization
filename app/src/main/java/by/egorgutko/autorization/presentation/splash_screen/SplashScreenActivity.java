@@ -7,20 +7,22 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import by.egorgutko.autorization.R;
-import by.egorgutko.autorization.data.AuthorizationPreferences;
+import by.egorgutko.autorization.data.AutorizationPreferenceSingleton;
 import by.egorgutko.autorization.presentation.Main.MainActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    private AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
+    AutorizationPreferenceSingleton autorizationPreferenceSingleton;
+   // private AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        authorizationPreferences.init(this);
-        if(authorizationPreferences.getUserName() != null){
+        autorizationPreferenceSingleton = AutorizationPreferenceSingleton.getPreserence(this);
+        //authorizationPreferences.init(this);
+        if(autorizationPreferenceSingleton.getUserName() != null){
             Intent mainIntent = new Intent(SplashScreenActivity.this, MainActivity.class);
             mainIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             SplashScreenActivity.this.startActivity(mainIntent);

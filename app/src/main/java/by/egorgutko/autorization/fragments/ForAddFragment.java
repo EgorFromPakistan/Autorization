@@ -1,30 +1,19 @@
 package by.egorgutko.autorization.fragments;
 
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import by.egorgutko.autorization.R;
-import by.egorgutko.autorization.data.AuthorizationPreferences;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class ForAddFragment extends Fragment implements View.OnClickListener {
 

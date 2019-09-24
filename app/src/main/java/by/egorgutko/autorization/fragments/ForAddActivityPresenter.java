@@ -2,14 +2,18 @@ package by.egorgutko.autorization.fragments;
 
 import android.content.Context;
 
-import by.egorgutko.autorization.data.AuthorizationPreferences;
+import by.egorgutko.autorization.data.AutorizationPreferenceSingleton;
+import by.egorgutko.autorization.data.UserPreferences;
 import by.egorgutko.autorization.presentation.base.BasePresenter;
 
 public class ForAddActivityPresenter extends BasePresenter<ForAddFragment> {
-    AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
+    AutorizationPreferenceSingleton autorizationPreferenceSingleton;
+    UserPreferences userPreferences;
+    //AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
 
    public void putFunc(Context context, String name){
-       authorizationPreferences.init(context);
-       authorizationPreferences.putSet(name);
+       autorizationPreferenceSingleton = AutorizationPreferenceSingleton.getPreserence(context);
+       userPreferences = new UserPreferences(context);
+       userPreferences.putSet(name);
     }
 }

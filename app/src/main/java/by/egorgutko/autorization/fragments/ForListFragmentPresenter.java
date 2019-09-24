@@ -4,20 +4,25 @@ import android.content.Context;
 
 import java.util.ArrayList;
 
-import by.egorgutko.autorization.data.AuthorizationPreferences;
+import by.egorgutko.autorization.data.AutorizationPreferenceSingleton;
+import by.egorgutko.autorization.data.UserPreferences;
 import by.egorgutko.autorization.presentation.base.BasePresenter;
 
 public class ForListFragmentPresenter extends BasePresenter<ForListFragment> {
 
-    AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
+    AutorizationPreferenceSingleton autorizationPreferenceSingleton;
+    UserPreferences userPreferences;
 
-    public  String getCurrentUserName(Context context){
-        authorizationPreferences.init(context);
-       return authorizationPreferences.getUserName();
+    //AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
+
+    public String getCurrentUserName(Context context) {
+        autorizationPreferenceSingleton = AutorizationPreferenceSingleton.getPreserence(context);
+        return autorizationPreferenceSingleton.getUserName();
     }
 
-    public ArrayList  getSetForList(String name){
-        return authorizationPreferences.getTaskList(name);
+    public ArrayList getSetForList(Context context) {
+        userPreferences = new UserPreferences(context);
+        return userPreferences.getTaskList();
 //        authorizationPreferences.getTaskList(name, arrayList);
     }
 }

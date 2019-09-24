@@ -7,6 +7,6 @@ import java.util.ArrayList;
 public interface ForListFragmentInterface {
 
     String getCurrentUserName(Context context);
-    void  getSetForList(String name, ArrayList arrayList);
+    void  getSetForList(Context context);
 
 }
