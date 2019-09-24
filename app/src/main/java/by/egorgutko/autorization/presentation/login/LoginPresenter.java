@@ -11,7 +11,7 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
     //AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
 
     public void addName(Context context, String name){
-        autorizationPreferenceSingleton = AutorizationPreferenceSingleton.getPreserence(context);
+        autorizationPreferenceSingleton = AutorizationPreferenceSingleton.getPreference(context);
         autorizationPreferenceSingleton.addNameOfUser(name);
     }
 

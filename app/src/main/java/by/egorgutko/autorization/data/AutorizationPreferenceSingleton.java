@@ -14,7 +14,7 @@ public class AutorizationPreferenceSingleton {
     private SharedPreferences settings = null;
     private SharedPreferences.Editor editor = null;
 
-    public static AutorizationPreferenceSingleton getPreserence(Context context) {
+    public static AutorizationPreferenceSingleton getPreference(Context context) {
         if (ourInstance == null) ourInstance = new AutorizationPreferenceSingleton(context);
         return ourInstance;
     }

@@ -12,7 +12,7 @@ public class ForAddActivityPresenter extends BasePresenter<ForAddFragment> {
     //AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
 
    public void putFunc(Context context, String name){
-       autorizationPreferenceSingleton = AutorizationPreferenceSingleton.getPreserence(context);
+       autorizationPreferenceSingleton = AutorizationPreferenceSingleton.getPreference(context);
        userPreferences = new UserPreferences(context);
        userPreferences.putSet(name);
     }

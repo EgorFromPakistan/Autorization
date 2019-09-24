@@ -16,7 +16,7 @@ public class ForListFragmentPresenter extends BasePresenter<ForListFragment> {
     //AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
 
     public String getCurrentUserName(Context context) {
-        autorizationPreferenceSingleton = AutorizationPreferenceSingleton.getPreserence(context);
+        autorizationPreferenceSingleton = AutorizationPreferenceSingleton.getPreference(context);
         return autorizationPreferenceSingleton.getUserName();
     }
 
