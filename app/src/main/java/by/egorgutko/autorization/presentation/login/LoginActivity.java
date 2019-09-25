@@ -1,16 +1,15 @@
 package by.egorgutko.autorization.presentation.login;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import by.egorgutko.autorization.R;
 import by.egorgutko.autorization.presentation.Main.MainActivity;
@@ -19,10 +18,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
 
-    SharedPreferences preferences;
     ActionBar actionBar;
-    final String SAVED_TEXT = "saved_text";
-    //AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
+    private final String SAVED_TEXT = "saved_text";
     LoginPresenter loginPresenter = new LoginPresenter();
 
     EditText editText;
@@ -34,28 +31,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         actionBar = getSupportActionBar();
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#93E9FA"));
         actionBar.setBackgroundDrawable(colorDrawable);
-
-        //authorizationPreferences.init(this);
-        //authorizationPreferences.addNameOfUser();
-        //loadText();
-        editText = (EditText)findViewById(R.id.mEditText);
-        buttonOk =(Button) findViewById(R.id.mButton);
+        editText = findViewById(R.id.mEditText);
+        buttonOk = findViewById(R.id.mButton);
         buttonOk.setOnClickListener(this);
-       // loginPresenter.attachView(this);
     }
 
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        //intent.putExtra("name", editText.getText().toString());
         loginPresenter.addName(this,editText.getText().toString());
-       // authorizationPreferences.init(this);
-       // authorizationPreferences.addNameOfUser(SAVED_TEXT,editText.getText().toString());
-        //preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        //SharedPreferences.Editor editor = preferences.edit();
-        //editor.putString(SAVED_TEXT,editText.getText().toString());
-        //editor.apply();
         startActivity(intent);
     }
 }

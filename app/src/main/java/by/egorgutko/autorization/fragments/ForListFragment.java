@@ -46,16 +46,15 @@ public class ForListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_for_list, containre, false);
         setHasOptionsMenu(true);
 
-        mTextView = (TextView) view.findViewById(R.id.mText);
-        recyclerView = (RecyclerView) view.findViewById(R.id.listRecyclerView);
+        mTextView = view.findViewById(R.id.mText);
+        recyclerView = view.findViewById(R.id.listRecyclerView);
         navController = Navigation.findNavController(Objects.requireNonNull(getActivity()), R.id.nav_host_fragment);
-        mButton = (Button) view.findViewById(R.id.mButtonLogOn);
+        mButton = view.findViewById(R.id.mButtonLogOn);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
             }
         });

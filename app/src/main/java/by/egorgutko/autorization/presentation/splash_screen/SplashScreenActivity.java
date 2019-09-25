@@ -24,13 +24,13 @@ public class SplashScreenActivity extends AppCompatActivity {
         //authorizationPreferences.init(this);
         if(autorizationPreferenceSingleton.getUserName() != null){
             Intent mainIntent = new Intent(SplashScreenActivity.this, MainActivity.class);
-            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             SplashScreenActivity.this.startActivity(mainIntent);
             SplashScreenActivity.this.finish();
         }
         else {
             Intent mainIntent = new Intent(SplashScreenActivity.this, ListActivity.class);
-            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             SplashScreenActivity.this.startActivity(mainIntent);
             SplashScreenActivity.this.finish();
         }
