@@ -11,12 +11,13 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import by.egorgutko.autorization.R;
+import io.reactivex.Observable;
 
 public class AdapterForRecyclerView extends RecyclerView.Adapter<AdapterForRecyclerView.MyAdapetrViewHolder> {
 
     ArrayList<String> myArray;
 
-    public AdapterForRecyclerView(ArrayList<String> myArray) {
+    public AdapterForRecyclerView(ArrayList myArray) {
         this.myArray = myArray;
     }
 

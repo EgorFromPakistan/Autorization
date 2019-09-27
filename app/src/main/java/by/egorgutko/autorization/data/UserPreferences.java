@@ -2,11 +2,12 @@ package by.egorgutko.autorization.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+
+import io.reactivex.Observable;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -20,13 +21,13 @@ public class UserPreferences {
 
     public UserPreferences(Context context) {
         autorizationPreferenceSingleton = AutorizationPreferenceSingleton.getPreference(context);
-        settings = context.getSharedPreferences(autorizationPreferenceSingleton.getUserName(), MODE_PRIVATE);
+        settings = context.getSharedPreferences(String.valueOf(autorizationPreferenceSingleton.getUserName()), MODE_PRIVATE);
         editor = settings.edit();
 
     }
 
     public ArrayList getTaskList() {
-        Set<String> set = settings.getStringSet(autorizationPreferenceSingleton.getUserName(), new HashSet<String>());
+        Set<String> set = settings.getStringSet(String.valueOf(autorizationPreferenceSingleton.getUserName()), new HashSet<String>());
         return new ArrayList(set);
     }
 

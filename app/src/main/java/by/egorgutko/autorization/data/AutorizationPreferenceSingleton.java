@@ -1,24 +1,26 @@
 package by.egorgutko.autorization.data;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import java.util.Set;
+import io.reactivex.Observable;
 
 public class AutorizationPreferenceSingleton {
 
     private static AutorizationPreferenceSingleton ourInstance;
 
     private static final String SAVED_TEXT = "saved_text";
-    private SharedPreferences settings = null;
-    private SharedPreferences.Editor editor = null;
+    private SharedPreferences settings;
+    private SharedPreferences.Editor editor;
 
     public static AutorizationPreferenceSingleton getPreference(Context context) {
         if (ourInstance == null) ourInstance = new AutorizationPreferenceSingleton(context);
         return ourInstance;
     }
 
+    @SuppressLint("CommitPrefEdits")
     private AutorizationPreferenceSingleton(Context context) {
             settings = PreferenceManager.getDefaultSharedPreferences(context);
             editor = settings.edit();
@@ -27,8 +29,6 @@ public class AutorizationPreferenceSingleton {
     public void addNameOfUser(String name) {
         ourInstance.editor.putString(SAVED_TEXT, name);
         ourInstance.editor.apply();
-       // editor.putString(SAVED_TEXT, name);
-       // editor.apply();
     }
 
     public String getUserName() {

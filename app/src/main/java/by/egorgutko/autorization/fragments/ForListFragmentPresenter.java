@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import by.egorgutko.autorization.data.AutorizationPreferenceSingleton;
 import by.egorgutko.autorization.data.UserPreferences;
 import by.egorgutko.autorization.presentation.base.BasePresenter;
+import io.reactivex.Observable;
 
-public class ForListFragmentPresenter extends BasePresenter<ForListFragment> {
+public class ForListFragmentPresenter extends BasePresenter<ForListFragment> implements ForListFragmentInterface {
 
     AutorizationPreferenceSingleton autorizationPreferenceSingleton;
     UserPreferences userPreferences;

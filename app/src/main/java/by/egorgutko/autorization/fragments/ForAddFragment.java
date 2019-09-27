@@ -33,9 +33,7 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_for_add, containre, false);
 
         navController = Navigation.findNavController(Objects.requireNonNull(getActivity()), R.id.nav_host_fragment);
-
         editText = view.findViewById(R.id.etext);
-
         button = view.findViewById(R.id.button);
         button.setOnClickListener(this);
 

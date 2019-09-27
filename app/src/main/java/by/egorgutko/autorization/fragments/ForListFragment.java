@@ -27,6 +27,7 @@ import java.util.Objects;
 import by.egorgutko.autorization.R;
 import by.egorgutko.autorization.presentation.Main.AdapterForRecyclerView;
 import by.egorgutko.autorization.presentation.login.LoginActivity;
+import io.reactivex.Observable;
 
 public class ForListFragment extends Fragment {
 

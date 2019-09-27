@@ -6,14 +6,15 @@ import by.egorgutko.autorization.data.AutorizationPreferenceSingleton;
 import by.egorgutko.autorization.data.UserPreferences;
 import by.egorgutko.autorization.presentation.base.BasePresenter;
 
-public class ForAddActivityPresenter extends BasePresenter<ForAddFragment> {
+public class ForAddActivityPresenter extends BasePresenter<ForAddFragment> implements ForAddFragmentInterface {
     AutorizationPreferenceSingleton autorizationPreferenceSingleton;
     UserPreferences userPreferences;
     //AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
 
-   public void putFunc(Context context, String name){
-       autorizationPreferenceSingleton = AutorizationPreferenceSingleton.getPreference(context);
-       userPreferences = new UserPreferences(context);
-       userPreferences.putSet(name);
+    @Override
+    public void putFunc(Context context, String name) {
+        autorizationPreferenceSingleton = AutorizationPreferenceSingleton.getPreference(context);
+        userPreferences = new UserPreferences(context);
+        userPreferences.putSet(name);
     }
 }
