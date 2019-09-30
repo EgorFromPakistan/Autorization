@@ -22,12 +22,17 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import by.egorgutko.autorization.R;
 import by.egorgutko.autorization.presentation.Main.AdapterForRecyclerView;
 import by.egorgutko.autorization.presentation.login.LoginActivity;
-import io.reactivex.Observable;
+import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.schedulers.Schedulers;
 
 public class ForListFragment extends Fragment {
 
@@ -36,11 +41,12 @@ public class ForListFragment extends Fragment {
     private Button mButton;
     private TextView mTextView;
     private String nameOfUser;
+    private AdapterForRecyclerView myAdapter;
 
     private ForListFragmentPresenter forListFragmentPresenter = new ForListFragmentPresenter();
 
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "CheckResult"})
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup containre, Bundle saveInstanceState) {
 
@@ -60,13 +66,34 @@ public class ForListFragment extends Fragment {
             }
         });
 
-        nameOfUser = forListFragmentPresenter.getCurrentUserName(getActivity().getApplicationContext());
+        forListFragmentPresenter.getCurrentUserName(getActivity().getApplicationContext()).subscribe(new DisposableSingleObserver<String>() {
+            @Override
+            public void onSuccess(String sName) {
+                nameOfUser = sName;
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        });
+
         mTextView.setText("Привет, " + nameOfUser);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        AdapterForRecyclerView myAdapter = new AdapterForRecyclerView(forListFragmentPresenter.getSetForList(getActivity().getApplicationContext()));
 
-        recyclerView.setAdapter(myAdapter);
+
+        forListFragmentPresenter.getSetForList(getActivity().getApplicationContext()).subscribe(new DisposableSingleObserver<ArrayList>() {
+            @Override
+            public void onSuccess(ArrayList arrayList) {
+                myAdapter = new AdapterForRecyclerView(arrayList);
+                recyclerView.setAdapter(myAdapter);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+            }
+        });
 
         return view;
     }

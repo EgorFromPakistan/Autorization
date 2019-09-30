@@ -5,7 +5,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import io.reactivex.Observable;
+import java.util.Objects;
+
+import io.reactivex.Completable;
+import io.reactivex.CompletableObserver;
+import io.reactivex.Single;
 
 public class AutorizationPreferenceSingleton {
 
@@ -22,16 +26,22 @@ public class AutorizationPreferenceSingleton {
 
     @SuppressLint("CommitPrefEdits")
     private AutorizationPreferenceSingleton(Context context) {
-            settings = PreferenceManager.getDefaultSharedPreferences(context);
-            editor = settings.edit();
+        settings = PreferenceManager.getDefaultSharedPreferences(context);
+        editor = settings.edit();
     }
 
-    public void addNameOfUser(String name) {
-        ourInstance.editor.putString(SAVED_TEXT, name);
-        ourInstance.editor.apply();
+    public Completable addNameOfUser(String name) {
+        return new Completable() {
+            @Override
+            protected void subscribeActual(CompletableObserver s) {
+                ourInstance.editor.putString(SAVED_TEXT, name);
+                ourInstance.editor.apply();
+            }
+        };
     }
 
-    public String getUserName() {
-        return ourInstance.settings.getString(SAVED_TEXT, "");
+
+    public Single<String> getUserName() {
+        return Single.just(Objects.requireNonNull(ourInstance.settings.getString(SAVED_TEXT, "")));
     }
 }
