@@ -66,15 +66,10 @@ public class ForListFragment extends Fragment {
             }
         });
 
-        forListFragmentPresenter.getCurrentUserName(getActivity().getApplicationContext()).subscribe(new DisposableSingleObserver<String>() {
+        forListFragmentPresenter.getCurrentUserName(getActivity().getApplicationContext()).subscribe(new Consumer<String>() {
             @Override
-            public void onSuccess(String sName) {
+            public void accept(String sName) throws Exception {
                 nameOfUser = sName;
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
             }
         });
 
@@ -83,15 +78,11 @@ public class ForListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
-        forListFragmentPresenter.getSetForList(getActivity().getApplicationContext()).subscribe(new DisposableSingleObserver<ArrayList>() {
+        forListFragmentPresenter.getSetForList(getActivity().getApplicationContext()).subscribe(new Consumer<ArrayList>() {
             @Override
-            public void onSuccess(ArrayList arrayList) {
+            public void accept(ArrayList arrayList) throws Exception {
                 myAdapter = new AdapterForRecyclerView(arrayList);
                 recyclerView.setAdapter(myAdapter);
-            }
-
-            @Override
-            public void onError(Throwable e) {
             }
         });
 
