@@ -6,11 +6,9 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import java.util.Objects;
-import java.util.concurrent.Callable;
 
 import io.reactivex.Completable;
 import io.reactivex.Single;
-import io.reactivex.functions.Action;
 
 public class AutorizationPreferenceSingleton implements AutorizationPreferenceInterfece {
 
@@ -31,26 +29,6 @@ public class AutorizationPreferenceSingleton implements AutorizationPreferenceIn
         editor = settings.edit();
     }
 
-    /*@Override
-    public Completable addUserName(String name) {
-        return Completable
-                .complete()
-                .doOnComplete(() -> {
-                    ourInstance.editor.putString(SAVED_TEXT, name).apply();
-                    //ourInstance.editor.apply();
-                });
-    }
-
-     */
-    /*@Override
-    public Completable addUserName(String name) {
-        return Completable.fromCallable((Callable<Void>) () -> {
-            ourInstance.editor.putString(SAVED_TEXT, name).apply();
-            return null;
-        });
-    }
-
-     */
     @Override
     public Completable addUserName(String name) {
         return Completable.fromAction(() -> ourInstance.editor.putString(SAVED_TEXT, name).apply());

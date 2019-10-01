@@ -3,12 +3,10 @@ package by.egorgutko.autorization.fragments;
 import android.content.Context;
 
 import java.util.ArrayList;
-import java.util.concurrent.Callable;
 
 import by.egorgutko.autorization.data.AutorizationPreferenceSingleton;
 import by.egorgutko.autorization.data.UserPreferences;
 import by.egorgutko.autorization.presentation.base.BasePresenter;
-import io.reactivex.Observable;
 import io.reactivex.Single;
 
 public class ForListFragmentPresenter extends BasePresenter<ForListFragment>  {
