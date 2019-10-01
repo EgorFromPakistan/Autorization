@@ -1,7 +1,9 @@
 package by.egorgutko.autorization.data;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -10,6 +12,7 @@ import java.util.Set;
 import io.reactivex.Completable;
 import io.reactivex.CompletableObserver;
 import io.reactivex.Single;
+import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -36,22 +39,16 @@ public class UserPreferences {
     }
 
 
+      @SuppressLint("CheckResult")
       public Completable putSet(String task) {
-        return new Completable() {
-            @Override
-            protected void subscribeActual(CompletableObserver s) {
-                Single<String> userName = (Single<String>) autorizationPreferenceSingleton.getUserName().subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String sName) throws Exception {
-                        setTask = settings.getStringSet(sName, new HashSet<String>());
-                        setTask.add(task);
-                        editor.clear();
-                        editor.putStringSet(sName, setTask);
-                        editor.apply();
-                    }
-                });
-
-            }
-        };
+        return Completable.complete().doOnComplete(() -> {
+            autorizationPreferenceSingleton.getUserName().subscribe(sName -> {
+                setTask = settings.getStringSet(sName, new HashSet<>());
+                setTask.add(task);
+                editor.clear();
+                editor.putStringSet(sName, setTask);
+                editor.apply();
+            });
+        });
     }
 }

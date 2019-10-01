@@ -12,7 +12,7 @@ public class LoginPresenter extends BasePresenter<LoginActivity> {
 
     public void addName(Context context, String name){
         autorizationPreferenceSingleton = AutorizationPreferenceSingleton.getPreference(context);
-        autorizationPreferenceSingleton.addNameOfUser(name);
+        autorizationPreferenceSingleton.addUserName(name);
     }
 
 

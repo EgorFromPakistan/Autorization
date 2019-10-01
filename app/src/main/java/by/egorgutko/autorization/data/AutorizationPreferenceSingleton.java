@@ -10,6 +10,7 @@ import java.util.Objects;
 import io.reactivex.Completable;
 import io.reactivex.CompletableObserver;
 import io.reactivex.Single;
+import io.reactivex.functions.Action;
 
 public class AutorizationPreferenceSingleton {
 
@@ -30,14 +31,11 @@ public class AutorizationPreferenceSingleton {
         editor = settings.edit();
     }
 
-    public Completable addNameOfUser(String name) {
-        return new Completable() {
-            @Override
-            protected void subscribeActual(CompletableObserver s) {
-                ourInstance.editor.putString(SAVED_TEXT, name);
-                ourInstance.editor.apply();
-            }
-        };
+    public Completable addUserName(String name) {
+        return Completable.complete().doOnComplete(() -> {
+            ourInstance.editor.putString(SAVED_TEXT, name);
+            ourInstance.editor.apply();
+        });
     }
 
 

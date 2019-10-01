@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,17 +23,11 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 import by.egorgutko.autorization.R;
 import by.egorgutko.autorization.presentation.Main.AdapterForRecyclerView;
 import by.egorgutko.autorization.presentation.login.LoginActivity;
-import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.observers.DisposableSingleObserver;
-import io.reactivex.schedulers.Schedulers;
 
 public class ForListFragment extends Fragment {
 
@@ -66,25 +61,21 @@ public class ForListFragment extends Fragment {
             }
         });
 
-        forListFragmentPresenter.getCurrentUserName(getActivity().getApplicationContext()).subscribe(new Consumer<String>() {
-            @Override
-            public void accept(String sName) throws Exception {
-                nameOfUser = sName;
-            }
-        });
+        forListFragmentPresenter.getCurrentUserName(getActivity().getApplicationContext())
+                .subscribe(sName -> nameOfUser = sName);
+        Log.d("myLog", nameOfUser);
 
         mTextView.setText("Привет, " + nameOfUser);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
-        forListFragmentPresenter.getSetForList(getActivity().getApplicationContext()).subscribe(new Consumer<ArrayList>() {
-            @Override
-            public void accept(ArrayList arrayList) throws Exception {
-                myAdapter = new AdapterForRecyclerView(arrayList);
-                recyclerView.setAdapter(myAdapter);
-            }
-        });
+        forListFragmentPresenter.getSetForList(getActivity().getApplicationContext())
+                .subscribe(arrayList -> {
+                    myAdapter = new AdapterForRecyclerView(arrayList);
+                    Log.d("myLog", String.valueOf(arrayList.size()));
+                    recyclerView.setAdapter(myAdapter);
+                });
 
         return view;
     }
