@@ -9,7 +9,7 @@ import by.egorgutko.autorization.data.UserPreferences;
 import by.egorgutko.autorization.presentation.base.BasePresenter;
 import io.reactivex.Single;
 
-public class ForListFragmentPresenter extends BasePresenter<ForListFragment>  {
+public class ForListFragmentPresenter extends BasePresenter<ForListFragment> implements ForListFragmentInterface  {
 
     AutorizationPreferenceSingleton autorizationPreferenceSingleton;
     UserPreferences userPreferences;

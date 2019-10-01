@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -60,7 +59,6 @@ public class ForListFragment extends Fragment {
 
         forListFragmentPresenter.getCurrentUserName(getActivity().getApplicationContext())
                 .subscribe(sName -> nameOfUser = sName);
-        Log.d("myLog", nameOfUser);
 
         mTextView.setText("Привет, " + nameOfUser);
 
@@ -70,7 +68,6 @@ public class ForListFragment extends Fragment {
         forListFragmentPresenter.getSetForList(getActivity().getApplicationContext())
                 .subscribe(arrayList -> {
                     myAdapter = new AdapterForRecyclerView(arrayList);
-                    Log.d("myLog", String.valueOf(arrayList.size()));
                     recyclerView.setAdapter(myAdapter);
                 });
 

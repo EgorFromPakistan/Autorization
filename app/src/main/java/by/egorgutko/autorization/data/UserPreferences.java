@@ -3,7 +3,6 @@ package by.egorgutko.autorization.data;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -36,7 +35,6 @@ public class UserPreferences implements UserPreferencesInterface {
     public Single<ArrayList> getTaskList() {
         autorizationPreferenceSingleton.getUserName().subscribe(sCurName->curName = sCurName);
         Set<String> set = settings.getStringSet(curName, new HashSet<String>());
-        Log.d("myLog", "SET" + set.size());
         return Single.just(new ArrayList(set));
     }
 

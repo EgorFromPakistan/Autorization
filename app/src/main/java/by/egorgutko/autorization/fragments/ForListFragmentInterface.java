@@ -4,11 +4,11 @@ import android.content.Context;
 
 import java.util.ArrayList;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 
 public interface ForListFragmentInterface {
 
-    String getCurrentUserName(Context context);
-    ArrayList getSetForList(Context context);
+    Single<String> getCurrentUserName(Context context);
+    Single<ArrayList> getSetForList(Context context);
 
 }

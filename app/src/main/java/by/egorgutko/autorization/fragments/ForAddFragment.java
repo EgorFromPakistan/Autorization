@@ -43,7 +43,7 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onClick(View view) {
-        forAddActivityPresenter.putFunc(Objects.requireNonNull(getActivity()).getApplicationContext(), editText.getText().toString());
+        forAddActivityPresenter.putFunc(Objects.requireNonNull(getActivity()).getApplicationContext(), editText.getText().toString()).subscribe();
         navController.popBackStack();
     }
 }
