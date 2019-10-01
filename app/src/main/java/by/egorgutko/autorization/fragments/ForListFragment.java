@@ -59,7 +59,7 @@ public class ForListFragment extends Fragment {
         });
 
         forListFragmentPresenter.getCurrentUserName(getActivity().getApplicationContext())
-                .subscribe(sName -> nameOfUser = sName+"dddd");
+                .subscribe(sName -> nameOfUser = sName);
         Log.d("myLog", nameOfUser);
 
         mTextView.setText("Привет, " + nameOfUser);

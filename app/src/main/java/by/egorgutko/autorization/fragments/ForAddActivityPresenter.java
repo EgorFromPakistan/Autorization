@@ -15,6 +15,6 @@ public class ForAddActivityPresenter extends BasePresenter<ForAddFragment> imple
     public void putFunc(Context context, String name) {
         autorizationPreferenceSingleton = AutorizationPreferenceSingleton.getPreference(context);
         userPreferences = new UserPreferences(context);
-        userPreferences.putSet(name);
+        userPreferences.putSet(name).subscribe();
     }
 }
