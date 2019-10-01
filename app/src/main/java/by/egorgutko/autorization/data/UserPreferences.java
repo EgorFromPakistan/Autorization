@@ -10,45 +10,42 @@ import java.util.HashSet;
 import java.util.Set;
 
 import io.reactivex.Completable;
-import io.reactivex.CompletableObserver;
 import io.reactivex.Single;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class UserPreferences {
+public class UserPreferences implements UserPreferencesInterface {
 
     private SharedPreferences settings = null;
     private SharedPreferences.Editor editor = null;
     private Set<String> setTask;
+    private String curName;
 
     private AutorizationPreferenceSingleton autorizationPreferenceSingleton;
 
+    @SuppressLint("CheckResult")
     public UserPreferences(Context context) {
         autorizationPreferenceSingleton = AutorizationPreferenceSingleton.getPreference(context);
-        settings = context.getSharedPreferences(String.valueOf(autorizationPreferenceSingleton.getUserName()), MODE_PRIVATE);
+        autorizationPreferenceSingleton.getUserName().subscribe(sCurName->curName = sCurName);
+        settings = context.getSharedPreferences(curName, MODE_PRIVATE);
         editor = settings.edit();
 
     }
 
-    public Single<ArrayList> getTaskList()
-    {
-        Set<String> set = settings.getStringSet(String.valueOf(autorizationPreferenceSingleton.getUserName()), new HashSet<String>());
-        return Single.just( new ArrayList(set));
+    @Override
+    public Single<ArrayList> getTaskList() {
+        autorizationPreferenceSingleton.getUserName().subscribe(sCurName->curName = sCurName);
+        Set<String> set = settings.getStringSet(curName, new HashSet<String>());
+        Log.d("myLog", "SET" + set.size());
+        return Single.just(new ArrayList(set));
     }
 
-
-      @SuppressLint("CheckResult")
-      public Completable putSet(String task) {
-        return Completable.complete().doOnComplete(() -> {
-            autorizationPreferenceSingleton.getUserName().subscribe(sName -> {
-                setTask = settings.getStringSet(sName, new HashSet<>());
-                setTask.add(task);
-                editor.clear();
-                editor.putStringSet(sName, setTask);
-                editor.apply();
-            });
-        });
+    public Completable putSet(String task) {
+        return Completable.fromAction(() -> autorizationPreferenceSingleton.getUserName().subscribe(sName -> {
+            setTask = settings.getStringSet(sName, new HashSet<>());
+            setTask.add(task);
+            editor.clear();
+            editor.putStringSet(sName, setTask).apply();
+        }));
     }
 }
