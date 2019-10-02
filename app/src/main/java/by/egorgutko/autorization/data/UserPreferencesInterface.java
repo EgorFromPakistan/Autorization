@@ -8,5 +8,5 @@ import io.reactivex.Single;
 public interface UserPreferencesInterface {
 
     Single<ArrayList> getTaskList();
-    Completable putSet(String task);
+    Completable setUserTask(String task);
 }

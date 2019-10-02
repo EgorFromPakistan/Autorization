@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/padding_standart_16dp"
     tools:context=".presentation.Main.MainActivity">
-
-
+    
     <fragment
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"

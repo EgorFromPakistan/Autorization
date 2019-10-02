@@ -6,7 +6,6 @@ import by.egorgutko.autorization.data.AutorizationPreferenceSingleton;
 import by.egorgutko.autorization.data.UserPreferences;
 import by.egorgutko.autorization.presentation.base.BasePresenter;
 import io.reactivex.Completable;
-import io.reactivex.functions.Action;
 import io.reactivex.schedulers.Schedulers;
 
 public class ForAddActivityPresenter extends BasePresenter<ForAddFragment> implements ForAddFragmentInterface {
@@ -19,7 +18,7 @@ public class ForAddActivityPresenter extends BasePresenter<ForAddFragment> imple
         return Completable.fromAction(() -> {
             autorizationPreferenceSingleton = AutorizationPreferenceSingleton.getPreference(context);
             userPreferences = new UserPreferences(context);
-            userPreferences.putSet(name)
+            userPreferences.setUserTask(name)
                     .subscribeOn(Schedulers.io())
                     .subscribe();
         });
