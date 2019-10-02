@@ -2,6 +2,8 @@ package by.egorgutko.autorization.presentation.login;
 
 import android.content.Context;
 
+import io.reactivex.Completable;
+
 public interface LoginActivityInterface {
-    void addName(Context context, String name);
+    Completable addName(Context context, String name);
 }

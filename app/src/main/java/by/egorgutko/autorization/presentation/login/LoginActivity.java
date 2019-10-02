@@ -13,9 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import by.egorgutko.autorization.R;
 import by.egorgutko.autorization.presentation.Main.MainActivity;
+import io.reactivex.schedulers.Schedulers;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-
 
 
     ActionBar actionBar;
@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     EditText editText;
     Button buttonOk;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +41,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        loginPresenter.addName(this,editText.getText().toString());
+        loginPresenter.addName(this, editText.getText().toString())
+                .subscribeOn(Schedulers.io())
+                .subscribe();
         startActivity(intent);
     }
 }
