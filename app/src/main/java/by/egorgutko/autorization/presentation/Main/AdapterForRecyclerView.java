@@ -1,21 +1,21 @@
 package by.egorgutko.autorization.presentation.Main;
 
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 
 import by.egorgutko.autorization.R;
-import io.reactivex.Observable;
 
 public class AdapterForRecyclerView extends RecyclerView.Adapter<AdapterForRecyclerView.MyAdapetrViewHolder> {
 
-    ArrayList<String> myArray;
+    private ArrayList<String> myArray;
 
     public AdapterForRecyclerView(ArrayList myArray) {
         this.myArray = myArray;

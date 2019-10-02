@@ -10,8 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import by.egorgutko.autorization.R;
 import by.egorgutko.autorization.data.AutorizationPreferenceSingleton;
 import by.egorgutko.autorization.presentation.Main.MainActivity;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class SplashScreenActivity extends AppCompatActivity {
