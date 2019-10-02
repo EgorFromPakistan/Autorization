@@ -27,6 +27,8 @@ import java.util.Objects;
 import by.egorgutko.autorization.R;
 import by.egorgutko.autorization.presentation.Main.AdapterForRecyclerView;
 import by.egorgutko.autorization.presentation.login.LoginActivity;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class ForListFragment extends Fragment {
 
@@ -58,14 +60,18 @@ public class ForListFragment extends Fragment {
         });
 
         forListFragmentPresenter.getCurrentUserName(getActivity().getApplicationContext())
-                .subscribe(sName -> nameOfUser = sName);
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(sName -> mTextView.setText("Привет, " + sName));
 
-        mTextView.setText("Привет, " + nameOfUser);
+        //mTextView.setText("Привет, " + nameOfUser);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
         forListFragmentPresenter.getSetForList(getActivity().getApplicationContext())
+                .subscribeOn(Schedulers.io())
+                //.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(arrayList -> {
                     myAdapter = new AdapterForRecyclerView(arrayList);
                     recyclerView.setAdapter(myAdapter);

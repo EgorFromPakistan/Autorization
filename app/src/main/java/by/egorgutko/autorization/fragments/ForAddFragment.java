@@ -18,6 +18,7 @@ import androidx.navigation.Navigation;
 import java.util.Objects;
 
 import by.egorgutko.autorization.R;
+import io.reactivex.schedulers.Schedulers;
 
 public class ForAddFragment extends Fragment implements View.OnClickListener {
 
@@ -43,7 +44,9 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onClick(View view) {
-        forAddActivityPresenter.putFunc(Objects.requireNonNull(getActivity()).getApplicationContext(), editText.getText().toString()).subscribe();
+        forAddActivityPresenter.putFunc(Objects.requireNonNull(getActivity()).getApplicationContext(), editText.getText().toString())
+                .subscribeOn(Schedulers.io())
+                .subscribe();
         navController.popBackStack();
     }
 }
