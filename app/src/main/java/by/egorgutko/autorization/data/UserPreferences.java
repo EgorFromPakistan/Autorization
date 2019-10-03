@@ -30,22 +30,36 @@ public class UserPreferences implements UserPreferencesInterface {
 
     }
 
-    @Override
-   /* public Single<ArrayList> getTaskList() {
+    /*@Override
+    public Single<ArrayList> getTaskList() {
         autorizationPreferenceSingleton.getUserName().subscribe(sCurName -> curName = sCurName);
         Set<String> set = settings.getStringSet(curName, new HashSet<String>());
         return Single.just(new ArrayList(set));
     }
 
-    */
+     */
 
-    public Single<ArrayList> getTaskList() {
+
+    /*public Single<ArrayList> getTaskList() {
         return autorizationPreferenceSingleton.getUserName()
                 .flatMap(name -> {
                     Set<String> set = settings.getStringSet(name, new HashSet<String>());
                     return Single.just(new ArrayList(set));
                 });
     }
+
+     */
+
+
+    public Single<ArrayList> getTaskList() {
+        return autorizationPreferenceSingleton.getUserName()
+                .map(name -> {
+                    Set<String> set = settings.getStringSet(name, new HashSet<String>());
+                    return new ArrayList(set);
+                });
+    }
+
+
 
 
 
@@ -62,15 +76,15 @@ public class UserPreferences implements UserPreferencesInterface {
      */
 
 
-        public Completable setUserTask (String task){
-            return autorizationPreferenceSingleton.getUserName()
-                    .flatMapCompletable(sName -> {
-                                settings.getStringSet(sName, new HashSet<>()).add(task);
-                                editor.clear();
-                                editor.putStringSet(sName, settings.getStringSet(sName, new HashSet<>())).apply();
-                                return Completable.complete();
-                            }
-                    );
-        }
-
+    public Completable setUserTask(String task) {
+        return autorizationPreferenceSingleton.getUserName()
+                .flatMapCompletable(sName -> {
+                            settings.getStringSet(sName, new HashSet<>()).add(task);
+                            editor.clear();
+                            editor.putStringSet(sName, settings.getStringSet(sName, new HashSet<>())).apply();
+                            return Completable.complete();
+                        }
+                );
     }
+
+}
