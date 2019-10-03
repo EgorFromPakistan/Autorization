@@ -1,5 +1,7 @@
 package by.egorgutko.autorization.data;
 
+import android.content.Context;
+
 import io.reactivex.Completable;
 import io.reactivex.Single;
 
