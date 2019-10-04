@@ -3,6 +3,7 @@ package by.egorgutko.autorization.data;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -17,6 +18,7 @@ public class UserPreferences implements UserPreferencesInterface {
 
     private SharedPreferences settings = null;
     private SharedPreferences.Editor editor = null;
+    private Set<String> setTask;
 
     private AutorizationPreferenceSingleton autorizationPreferenceSingleton;
 
@@ -30,58 +32,26 @@ public class UserPreferences implements UserPreferencesInterface {
 
     }
 
-    /*@Override
-    public Single<ArrayList> getTaskList() {
-        autorizationPreferenceSingleton.getUserName().subscribe(sCurName -> curName = sCurName);
-        Set<String> set = settings.getStringSet(curName, new HashSet<String>());
-        return Single.just(new ArrayList(set));
-    }
-
-     */
-
-
-    /*public Single<ArrayList> getTaskList() {
-        return autorizationPreferenceSingleton.getUserName()
-                .flatMap(name -> {
-                    Set<String> set = settings.getStringSet(name, new HashSet<String>());
-                    return Single.just(new ArrayList(set));
-                });
-    }
-
-     */
-
 
     public Single<ArrayList> getTaskList() {
         return autorizationPreferenceSingleton.getUserName()
                 .map(name -> {
                     Set<String> set = settings.getStringSet(name, new HashSet<String>());
+                    Log.d("myLog", String.valueOf(set.size()));
                     return new ArrayList(set);
                 });
     }
 
 
-
-
-
-    /*@SuppressLint("CheckResult")
-    @Override
-    public Single<ArrayList> getTaskList() {
-        autorizationPreferenceSingleton.getUserName().flatMapCompletable(sCurName -> {
-            curName = sCurName;
-            return Completable.complete();
-        });
-        return Single.just(new ArrayList(settings.getStringSet(curName, new HashSet<String>())));
-    }
-
-     */
-
-
     public Completable setUserTask(String task) {
         return autorizationPreferenceSingleton.getUserName()
                 .flatMapCompletable(sName -> {
-                            settings.getStringSet(sName, new HashSet<>()).add(task);
+                            setTask = settings.getStringSet(sName, new HashSet<>());
+                            setTask.add(task);
+                            Log.d("myLog", "task = " + task);
+                            Log.d("myLog", "size= " + String.valueOf(settings.getStringSet(sName, new HashSet<>()).size()));
                             editor.clear();
-                            editor.putStringSet(sName, settings.getStringSet(sName, new HashSet<>())).apply();
+                            editor.putStringSet(sName, setTask).apply();
                             return Completable.complete();
                         }
                 );

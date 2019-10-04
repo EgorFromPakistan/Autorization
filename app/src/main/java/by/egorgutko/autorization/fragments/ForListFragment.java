@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -49,6 +50,7 @@ public class ForListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_for_list, containre, false);
         setHasOptionsMenu(true);
 
+        
         mTextView = view.findViewById(R.id.mText);
         recyclerView = view.findViewById(R.id.listRecyclerView);
         navController = Navigation.findNavController(Objects.requireNonNull(getActivity()), R.id.nav_host_fragment);
@@ -64,18 +66,17 @@ public class ForListFragment extends Fragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(sName -> mTextView.setText("Привет, " + sName));
 
-        //mTextView.setText("Привет, " + nameOfUser);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
         forListFragmentPresenter.getSetForList(getActivity().getApplicationContext())
                 .subscribeOn(Schedulers.io())
-                //.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(arrayList -> {
                     myAdapter = new AdapterForRecyclerView(arrayList);
                     recyclerView.setAdapter(myAdapter);
                 });
+
 
         return view;
     }
