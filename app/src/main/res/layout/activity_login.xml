@@ -31,9 +31,9 @@
         app:layout_constraintTop_toBottomOf="@+id/mTextView" />
 
     <Button
+        style="@style/myButtonStyle"
         android:id="@+id/mButton"
         android:text="@string/mButton"
-        android:theme="@style/BlueButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="@+id/mEditText"

@@ -7,26 +7,25 @@
     android:padding="@dimen/padding_standart_16dp"
     tools:context=".presentation.Main.MainActivity">
 
-   <EditText
-       android:layout_width="@dimen/null_size_0dp"
-       android:layout_height="wrap_content"
-       app:layout_constraintTop_toTopOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintBottom_toBottomOf="@id/button"
-       android:hint="@string/tasks"
-       android:id="@+id/etext"/>
+    <EditText
+        android:id="@+id/etext"
+        android:layout_width="@dimen/null_size_0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/tasks"
+        app:layout_constraintBottom_toBottomOf="@id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/add"
-        android:id="@+id/button"
-        android:theme="@style/BlueButton"
-        />
+        style="@style/myButtonStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

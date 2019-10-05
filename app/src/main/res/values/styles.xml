@@ -16,10 +16,5 @@
     </style>
 
 
-    <style name="BlueButton" parent="@style/Widget.AppCompat.Button.Colored">
-        <item name="colorButtonNormal">@color/colorBlue</item>
-        <item name="colorControlHighlight">@color/colorDarkBlue</item>
-    </style>
-
 
 </resources>
