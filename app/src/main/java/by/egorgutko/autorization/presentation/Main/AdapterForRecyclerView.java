@@ -10,14 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import by.egorgutko.autorization.R;
 
 public class AdapterForRecyclerView extends RecyclerView.Adapter<AdapterForRecyclerView.MyAdapetrViewHolder> {
 
-    private ArrayList<String> myArray;
+    private List<String> myArray;
 
-    public AdapterForRecyclerView(ArrayList myArray) {
+    public AdapterForRecyclerView(List myArray) {
         this.myArray = myArray;
     }
 

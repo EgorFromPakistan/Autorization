@@ -1,4 +1,4 @@
-package by.egorgutko.autorization.fragments;
+package by.egorgutko.autorization.fragments.list;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,25 +22,28 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
 import java.util.Objects;
 
 import by.egorgutko.autorization.R;
 import by.egorgutko.autorization.presentation.Main.AdapterForRecyclerView;
 import by.egorgutko.autorization.presentation.login.LoginActivity;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
-public class ForListFragment extends Fragment {
+public class ForListFragment extends Fragment implements ForListView {
 
     private NavController navController;
     private RecyclerView recyclerView;
     private Button mButton;
     private TextView mTextView;
-    private String nameOfUser;
     private AdapterForRecyclerView myAdapter;
 
     private ForListFragmentPresenter forListFragmentPresenter = new ForListFragmentPresenter();
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        forListFragmentPresenter.attachView(this);
+    }
 
     @SuppressLint({"SetTextI18n", "CheckResult"})
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -50,7 +52,7 @@ public class ForListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_for_list, containre, false);
         setHasOptionsMenu(true);
 
-        
+
         mTextView = view.findViewById(R.id.mText);
         recyclerView = view.findViewById(R.id.listRecyclerView);
         navController = Navigation.findNavController(Objects.requireNonNull(getActivity()), R.id.nav_host_fragment);
@@ -61,25 +63,12 @@ public class ForListFragment extends Fragment {
             startActivity(intent);
         });
 
-        forListFragmentPresenter.getCurrentUserName(getActivity().getApplicationContext())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(sName -> mTextView.setText("Привет, " + sName));
-
-
+        forListFragmentPresenter.init(getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-        forListFragmentPresenter.getSetForList(getActivity().getApplicationContext())
-                .subscribeOn(Schedulers.io())
-                .subscribe(arrayList -> {
-                    myAdapter = new AdapterForRecyclerView(arrayList);
-                    recyclerView.setAdapter(myAdapter);
-                });
-
 
         return view;
     }
+
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
@@ -93,4 +82,14 @@ public class ForListFragment extends Fragment {
     }
 
 
+    @Override
+    public void showUserName(String name) {
+        mTextView.setText("Привет, " + name);
+    }
+
+    @Override
+    public void showUserData(List data) {
+        myAdapter = new AdapterForRecyclerView(data);
+        recyclerView.setAdapter(myAdapter);
+    }
 }

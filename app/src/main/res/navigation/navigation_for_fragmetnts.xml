@@ -6,11 +6,11 @@
     app:startDestination="@id/listFragment">
     <fragment
         android:id="@+id/forAddFragment"
-        android:name="by.egorgutko.autorization.fragments.ForAddFragment"
+        android:name="by.egorgutko.autorization.fragments.add.ForAddFragment"
         android:label="ForAddFragment" />
     <fragment
         android:id="@+id/listFragment"
-        android:name="by.egorgutko.autorization.fragments.ForListFragment"
+        android:name="by.egorgutko.autorization.fragments.list.ForListFragment"
         android:label="ListFragment" >
         <action
             android:id="@+id/action_listFragment_to_forAddFragment"

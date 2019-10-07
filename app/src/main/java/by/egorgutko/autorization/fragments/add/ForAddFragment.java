@@ -1,6 +1,7 @@
-package by.egorgutko.autorization.fragments;
+package by.egorgutko.autorization.fragments.add;
 
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,6 +28,12 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
     private NavController navController;
     private ForAddActivityPresenter forAddActivityPresenter = new ForAddActivityPresenter();
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        forAddActivityPresenter.attachView(this);
+    }
+
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup containre, Bundle saveInstanceState) {
@@ -44,9 +51,12 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onClick(View view) {
-        forAddActivityPresenter.putFunc(Objects.requireNonNull(getActivity()).getApplicationContext(), editText.getText().toString())
-                .subscribeOn(Schedulers.io())
-                .subscribe();
+        forAddActivityPresenter.init(getContext(),editText.getText().toString());
         navController.popBackStack();
     }
+
+    //@Override
+    //public void putTask(String task) {
+
+    //}
 }

@@ -8,13 +8,13 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import by.egorgutko.autorization.R;
-import by.egorgutko.autorization.data.AutorizationPreferenceSingleton;
+import by.egorgutko.autorization.data.AutorizationPreference;
 import by.egorgutko.autorization.presentation.Main.MainActivity;
 import io.reactivex.schedulers.Schedulers;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    AutorizationPreferenceSingleton autorizationPreferenceSingleton;
+    AutorizationPreference autorizationPreferenceSingleton;
    // private AuthorizationPreferences authorizationPreferences = new AuthorizationPreferences();
 
     @SuppressLint("CheckResult")
@@ -23,7 +23,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        autorizationPreferenceSingleton = AutorizationPreferenceSingleton.getPreference(this);
+        autorizationPreferenceSingleton = AutorizationPreference.getPreference(this);
         //authorizationPreferences.init(this);
         autorizationPreferenceSingleton.getUserName()
                 .subscribeOn(Schedulers.io())

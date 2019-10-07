@@ -16,45 +16,36 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class UserPreferences implements UserPreferencesInterface {
 
+    private final String KEY_SET = "KEY_SET";
+
     private SharedPreferences settings = null;
     private SharedPreferences.Editor editor = null;
-    private Set<String> setTask;
-
-    private AutorizationPreferenceSingleton autorizationPreferenceSingleton;
 
     @SuppressLint("CheckResult")
-    public UserPreferences(Context context) {
-        autorizationPreferenceSingleton = AutorizationPreferenceSingleton.getPreference(context);
-        autorizationPreferenceSingleton.getUserName().subscribe(sCurName -> {
-            settings = context.getSharedPreferences(sCurName, MODE_PRIVATE);
-            editor = settings.edit();
-        });
-
+    public UserPreferences(Context context, String name) {
+        settings = context.getSharedPreferences(name, MODE_PRIVATE);
+        editor = settings.edit();
     }
 
 
     public Single<ArrayList> getTaskList() {
-        return autorizationPreferenceSingleton.getUserName()
-                .map(name -> {
-                    Set<String> set = settings.getStringSet(name, new HashSet<String>());
-                    Log.d("myLog", String.valueOf(set.size()));
-                    return new ArrayList(set);
-                });
+        return Single.fromCallable(() -> {
+            Set<String> set = settings.getStringSet(KEY_SET, new HashSet<String>());
+            Log.d("myLog", String.valueOf(set.size()));
+            return new ArrayList(set);
+        });
     }
 
 
     public Completable setUserTask(String task) {
-        return autorizationPreferenceSingleton.getUserName()
-                .flatMapCompletable(sName -> {
-                            setTask = settings.getStringSet(sName, new HashSet<>());
-                            setTask.add(task);
-                            Log.d("myLog", "task = " + task);
-                            Log.d("myLog", "size= " + String.valueOf(settings.getStringSet(sName, new HashSet<>()).size()));
-                            editor.clear();
-                            editor.putStringSet(sName, setTask).apply();
-                            return Completable.complete();
-                        }
-                );
+        return Completable.fromAction(() -> {
+            Set<String> setTask = settings.getStringSet(KEY_SET, new HashSet<>());
+            setTask.add(task);
+            Log.d("myLog", "task = " + task);
+            Log.d("myLog", "size= " + setTask.size());
+            editor.clear();
+            editor.putStringSet(KEY_SET, setTask).apply();
+        });
     }
 
 }

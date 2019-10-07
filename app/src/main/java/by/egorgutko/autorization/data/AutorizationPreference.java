@@ -5,37 +5,39 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import java.util.Objects;
-
 import io.reactivex.Completable;
 import io.reactivex.Single;
+import io.reactivex.functions.Action;
 
-public class AutorizationPreferenceSingleton implements AutorizationPreferenceInterfece {
+public class AutorizationPreference implements AutorizationPreferenceInterfece {
 
-    private static AutorizationPreferenceSingleton ourInstance;
+    private static AutorizationPreference ourInstance;
 
     private static final String SAVED_TEXT = "saved_text";
     private SharedPreferences settings;
     private SharedPreferences.Editor editor;
 
-    public static AutorizationPreferenceSingleton getPreference(Context context) {
-        if (ourInstance == null) ourInstance = new AutorizationPreferenceSingleton(context);
+    public static AutorizationPreference getPreference(Context context) {
+        if (ourInstance == null) ourInstance = new AutorizationPreference(context);
         return ourInstance;
     }
 
     @SuppressLint("CommitPrefEdits")
-    private AutorizationPreferenceSingleton(Context context) {
+    private AutorizationPreference(Context context) {
         settings = PreferenceManager.getDefaultSharedPreferences(context);
         editor = settings.edit();
     }
 
     @Override
     public Completable addUserName(String name) {
-        return Completable.fromAction(() -> ourInstance.editor.putString(SAVED_TEXT, name).apply());
+        Action action = () -> editor.putString(SAVED_TEXT, name).apply();
+        return Completable.fromAction(action);
     }
 
     @Override
     public Single<String> getUserName() {
-        return Single.just(Objects.requireNonNull(ourInstance.settings.getString(SAVED_TEXT, "")));
+        return Single.fromCallable(()->{
+            return settings.getString(SAVED_TEXT, "");
+        });
     }
 }
