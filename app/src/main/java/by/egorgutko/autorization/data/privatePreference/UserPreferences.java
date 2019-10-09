@@ -1,4 +1,4 @@
-package by.egorgutko.autorization.data;
+package by.egorgutko.autorization.data.privatePreference;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package by.egorgutko.autorization.data;
+package by.egorgutko.autorization.data.defaultPreference;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -36,8 +36,6 @@ public class AutorizationPreference implements AutorizationPreferenceInterfece {
 
     @Override
     public Single<String> getUserName() {
-        return Single.fromCallable(()->{
-            return settings.getString(SAVED_TEXT, "");
-        });
+        return Single.fromCallable(()-> settings.getString(SAVED_TEXT, ""));
     }
 }

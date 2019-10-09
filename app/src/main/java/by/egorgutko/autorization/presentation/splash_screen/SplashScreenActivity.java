@@ -8,7 +8,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import by.egorgutko.autorization.R;
-import by.egorgutko.autorization.data.AutorizationPreference;
+import by.egorgutko.autorization.data.defaultPreference.AutorizationPreference;
 import by.egorgutko.autorization.presentation.Main.MainActivity;
 import io.reactivex.schedulers.Schedulers;
 

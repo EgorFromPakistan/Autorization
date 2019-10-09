@@ -1,4 +1,4 @@
-package by.egorgutko.autorization.data;
+package by.egorgutko.autorization.data.defaultPreference;
 
 import android.content.Context;
 
