@@ -92,4 +92,10 @@ public class ForListFragment extends Fragment implements ForListView {
         myAdapter = new AdapterForRecyclerView(data);
         recyclerView.setAdapter(myAdapter);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        forListFragmentPresenter.disposeObserver();
+    }
 }

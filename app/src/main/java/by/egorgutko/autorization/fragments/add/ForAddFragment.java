@@ -1,7 +1,6 @@
 package by.egorgutko.autorization.fragments.add;
 
 
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,7 +18,6 @@ import androidx.navigation.Navigation;
 import java.util.Objects;
 
 import by.egorgutko.autorization.R;
-import io.reactivex.schedulers.Schedulers;
 
 public class ForAddFragment extends Fragment implements View.OnClickListener {
 
@@ -44,6 +42,8 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
         button = view.findViewById(R.id.button);
         button.setOnClickListener(this);
 
+        getLifecycle().addObserver(forAddActivityPresenter);
+
         return view;
     }
 
@@ -51,12 +51,13 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onClick(View view) {
-        forAddActivityPresenter.init(getContext(),editText.getText().toString());
+        forAddActivityPresenter.init(getContext(), editText.getText().toString());
         navController.popBackStack();
     }
 
-    //@Override
-    //public void putTask(String task) {
-
-    //}
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        forAddActivityPresenter.disposeObserver();
+    }
 }
