@@ -4,6 +4,7 @@ import android.content.Context;
 
 import by.egorgutko.autorization.data.defaultPreference.AutorizationPreference;
 import by.egorgutko.autorization.data.privatePreference.UserPreferences;
+import by.egorgutko.autorization.data.privatePreference.UserPreferencesInterface;
 import by.egorgutko.autorization.presentation.base.BasePresenter;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -13,7 +14,7 @@ import io.reactivex.schedulers.Schedulers;
 public class ForListFragmentPresenter extends BasePresenter<ForListView> {
 
     private AutorizationPreference autorizationPreference;
-    private UserPreferences userPreferences;
+    private UserPreferencesInterface userPreferences;
     private CompositeDisposable disposables = new CompositeDisposable();
 
     public void init(Context context) {
