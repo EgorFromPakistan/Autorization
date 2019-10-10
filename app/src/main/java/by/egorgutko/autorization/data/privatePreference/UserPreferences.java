@@ -31,7 +31,6 @@ public class UserPreferences implements UserPreferencesInterface {
     public Single<ArrayList> getTaskList() {
         return Single.fromCallable(() -> {
             Set<String> set = settings.getStringSet(KEY_SET, new HashSet<String>());
-            Log.d("myLog", String.valueOf(set.size()));
             return new ArrayList(set);
         });
     }
@@ -41,8 +40,6 @@ public class UserPreferences implements UserPreferencesInterface {
         return Completable.fromAction(() -> {
             Set<String> setTask = settings.getStringSet(KEY_SET, new HashSet<>());
             setTask.add(task);
-            Log.d("myLog", "task = " + task);
-            Log.d("myLog", "size= " + setTask.size());
             editor.clear();
             editor.putStringSet(KEY_SET, setTask).apply();
         });

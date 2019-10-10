@@ -2,15 +2,12 @@ package by.egorgutko.autorization.fragments.list;
 
 import android.content.Context;
 
-import java.util.List;
-
 import by.egorgutko.autorization.data.defaultPreference.AutorizationPreference;
 import by.egorgutko.autorization.data.privatePreference.UserPreferences;
 import by.egorgutko.autorization.presentation.base.BasePresenter;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
 public class ForListFragmentPresenter extends BasePresenter<ForListView> {
@@ -20,6 +17,7 @@ public class ForListFragmentPresenter extends BasePresenter<ForListView> {
     private CompositeDisposable disposables = new CompositeDisposable();
 
     public void init(Context context) {
+        disposables = new CompositeDisposable();
         autorizationPreference = AutorizationPreference.getPreference(context);
         Disposable myDisposableSingle = autorizationPreference.getUserName()
                 .flatMap(name -> {
@@ -29,15 +27,11 @@ public class ForListFragmentPresenter extends BasePresenter<ForListView> {
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSingleObserver<List>() {
-                    @Override
-                    public void onSuccess(List list) {
-                        mView.showUserData(list);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
+                .subscribe((arrayList, throwable) -> {
+                    if (throwable != null) {
+                        throwable.printStackTrace();
+                    } else {
+                        mView.showUserData(arrayList);
                     }
                 });
         disposables.add(myDisposableSingle);
