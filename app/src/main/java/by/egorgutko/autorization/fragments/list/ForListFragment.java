@@ -33,9 +33,7 @@ public class ForListFragment extends Fragment implements ForListView {
 
     private NavController navController;
     private RecyclerView recyclerView;
-    private Button mButton;
     private TextView mTextView;
-    private AdapterForRecyclerView myAdapter;
 
     private ForListFragmentPresenter forListFragmentPresenter = new ForListFragmentPresenter();
 
@@ -56,18 +54,26 @@ public class ForListFragment extends Fragment implements ForListView {
         mTextView = view.findViewById(R.id.mText);
         recyclerView = view.findViewById(R.id.listRecyclerView);
         navController = Navigation.findNavController(Objects.requireNonNull(getActivity()), R.id.nav_host_fragment);
-        mButton = view.findViewById(R.id.mButtonLogOn);
+        Button mButton = view.findViewById(R.id.mButtonLogOn);
         mButton.setOnClickListener(view1 -> {
             Intent intent = new Intent(getActivity(), LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
         });
 
-        forListFragmentPresenter.init(getContext());
+        //forListFragmentPresenter.init(getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return view;
     }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        forListFragmentPresenter.init(getContext());
+    }
+
+
 
 
     @Override
@@ -89,13 +95,13 @@ public class ForListFragment extends Fragment implements ForListView {
 
     @Override
     public void showUserData(List data) {
-        myAdapter = new AdapterForRecyclerView(data);
+        AdapterForRecyclerView myAdapter = new AdapterForRecyclerView(data);
         recyclerView.setAdapter(myAdapter);
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         forListFragmentPresenter.disposeObserver();
     }
 }
