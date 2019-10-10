@@ -3,7 +3,6 @@ package by.egorgutko.autorization.data.privatePreference;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashSet;

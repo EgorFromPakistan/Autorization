@@ -106,4 +106,10 @@ public class ForListFragment extends Fragment implements ForListView {
         super.onDestroyView();
         forListFragmentPresenter.disposeObserver();
     }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        forListFragmentPresenter.detachView();
+    }
 }

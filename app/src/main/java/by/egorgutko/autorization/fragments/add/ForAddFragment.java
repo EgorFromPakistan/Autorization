@@ -59,4 +59,10 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
         super.onDestroyView();
         forAddActivityPresenter.disposeObserver();
     }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        forAddActivityPresenter.detachView();
+    }
 }
