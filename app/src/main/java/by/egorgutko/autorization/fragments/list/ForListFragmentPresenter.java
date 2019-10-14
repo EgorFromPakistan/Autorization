@@ -20,7 +20,6 @@ import io.reactivex.schedulers.Schedulers;
 public class ForListFragmentPresenter extends BasePresenter<ForListView> {
 
     private AutorizationPreference autorizationPreference;
-    private UserPreferencesInterface userPreferences;
     private CompositeDisposable disposables = new CompositeDisposable();
     PersonTasksDatabase db = App.getInstance().getDatabase();//получение базы
     private TaskDao taskDao = db.taskDao();//получение дао
