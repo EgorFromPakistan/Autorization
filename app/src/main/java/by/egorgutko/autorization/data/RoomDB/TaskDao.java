@@ -12,8 +12,8 @@ public interface TaskDao  {
     @Insert
     void setTaskOfUSer(Person task);
 
-    @Query("SELECT * FROM  persontask WHERE username = :name")
-    List<Person> getPersons(String name);
+    @Query("SELECT textForTask  FROM  persontask WHERE username = :name")
+    List<String> getPersons(String name);
 
 
 

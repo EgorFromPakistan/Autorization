@@ -33,46 +33,11 @@ public class ForListFragmentPresenter extends BasePresenter<ForListView> {
         Disposable myDisposableSingle = autorizationPreference.getUserName()
                 .flatMap(name -> {
                     mView.showUserName(name);
-                    //personTasks = new Person(name);
                     return dateBase.getTaskList(name);
-                })
-                .map(personTasks -> {
-                    ArrayList<String> tasks = new ArrayList<>();
-                    for (Person s : personTasks) {
-                        tasks.add(s.getText());
-                    }
-                    return tasks;
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(task -> mView.showUserData(task), throwable -> throwable.printStackTrace());
-//                        new DisposableSingleObserver<java.util.List<Person>>() {
-//                    @Override
-//                    public void onSuccess(List<Person> personTasks) {
-//                        ArrayList<String> tasks = new ArrayList<>();
-//                        for (Person s : personTasks) {
-//                            tasks.add(s.getText());
-//                        }
-//                        mView.showUserData(tasks);
-//                    }
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        e.printStackTrace();
-//                    }
-//                });
-                /*.subscribe((arrayList, throwable) -> {
-                    if (throwable != null) {
-                        throwable.printStackTrace();
-                    } else {
-                        ArrayList<String> tasks = new ArrayList<>();
-                        for (Person s : arrayList) {
-                            tasks.add(s.getText());
-                        }
-                        mView.showUserData(tasks);
-                    }
-                });
-
-                 */
         disposables.add(myDisposableSingle);
     }
 

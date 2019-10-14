@@ -7,6 +7,6 @@ import io.reactivex.Single;
 
 public interface DBInterface {
 
-    Single<List<Person>> getTaskList(String name);
+    Single<List<String>> getTaskList(String name);
     Completable setUserTask(Person task);
 }
