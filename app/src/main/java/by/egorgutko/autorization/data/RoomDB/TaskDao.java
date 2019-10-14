@@ -10,10 +10,11 @@ import java.util.List;
 public interface TaskDao  {
 
     @Insert
-    void setTaskOfUSer(PersonTasks task);
+    void setTaskOfUSer(Person task);
 
     @Query("SELECT * FROM  persontask WHERE username = :name")
-    List<PersonTasks> getTaskList(String name);
+    List<Person> getPersons(String name);
+
 
 
 }

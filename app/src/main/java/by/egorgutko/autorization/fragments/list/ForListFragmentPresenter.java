@@ -2,9 +2,11 @@ package by.egorgutko.autorization.fragments.list;
 
 import android.content.Context;
 
+import java.util.ArrayList;
+
 import by.egorgutko.autorization.data.RoomDB.App;
 import by.egorgutko.autorization.data.RoomDB.DateBase;
-import by.egorgutko.autorization.data.RoomDB.PersonTasks;
+import by.egorgutko.autorization.data.RoomDB.Person;
 import by.egorgutko.autorization.data.RoomDB.PersonTasksDatabase;
 import by.egorgutko.autorization.data.RoomDB.TaskDao;
 import by.egorgutko.autorization.data.defaultPreference.AutorizationPreference;
@@ -14,10 +16,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-
-import android.app.Activity;
-
-import java.util.ArrayList;
 
 public class ForListFragmentPresenter extends BasePresenter<ForListView> {
 
@@ -35,22 +33,46 @@ public class ForListFragmentPresenter extends BasePresenter<ForListView> {
         Disposable myDisposableSingle = autorizationPreference.getUserName()
                 .flatMap(name -> {
                     mView.showUserName(name);
-                    //personTasks = new PersonTasks(name);
+                    //personTasks = new Person(name);
                     return dateBase.getTaskList(name);
+                })
+                .map(personTasks -> {
+                    ArrayList<String> tasks = new ArrayList<>();
+                    for (Person s : personTasks) {
+                        tasks.add(s.getText());
+                    }
+                    return tasks;
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((arrayList, throwable) -> {
+                .subscribe(task -> mView.showUserData(task), throwable -> throwable.printStackTrace());
+//                        new DisposableSingleObserver<java.util.List<Person>>() {
+//                    @Override
+//                    public void onSuccess(List<Person> personTasks) {
+//                        ArrayList<String> tasks = new ArrayList<>();
+//                        for (Person s : personTasks) {
+//                            tasks.add(s.getText());
+//                        }
+//                        mView.showUserData(tasks);
+//                    }
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        e.printStackTrace();
+//                    }
+//                });
+                /*.subscribe((arrayList, throwable) -> {
                     if (throwable != null) {
                         throwable.printStackTrace();
                     } else {
                         ArrayList<String> tasks = new ArrayList<>();
-                        for (PersonTasks s : arrayList) {
+                        for (Person s : arrayList) {
                             tasks.add(s.getText());
                         }
                         mView.showUserData(tasks);
                     }
                 });
+
+                 */
         disposables.add(myDisposableSingle);
     }
 

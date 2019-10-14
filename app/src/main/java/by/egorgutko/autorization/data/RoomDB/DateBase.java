@@ -14,12 +14,12 @@ public class DateBase implements DBInterface  {
     }
 
     @Override
-    public Single<List<PersonTasks>> getTaskList(String name) {
-        return Single.fromCallable(()-> taskDao.getTaskList(name));
+    public Single<List<Person>> getTaskList(String name) {
+        return Single.fromCallable(()-> taskDao.getPersons(name));
     }
 
     @Override
-    public Completable setUserTask(PersonTasks task) {
+    public Completable setUserTask(Person task) {
         return Completable.fromAction(()-> taskDao.setTaskOfUSer(task));
     }
 }

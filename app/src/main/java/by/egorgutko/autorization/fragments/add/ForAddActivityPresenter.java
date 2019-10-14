@@ -3,11 +3,10 @@ package by.egorgutko.autorization.fragments.add;
 import android.content.Context;
 
 import androidx.lifecycle.LifecycleObserver;
-import androidx.room.Database;
 
 import by.egorgutko.autorization.data.RoomDB.App;
 import by.egorgutko.autorization.data.RoomDB.DateBase;
-import by.egorgutko.autorization.data.RoomDB.PersonTasks;
+import by.egorgutko.autorization.data.RoomDB.Person;
 import by.egorgutko.autorization.data.RoomDB.PersonTasksDatabase;
 import by.egorgutko.autorization.data.RoomDB.TaskDao;
 import by.egorgutko.autorization.data.defaultPreference.AutorizationPreference;
@@ -24,7 +23,7 @@ public class ForAddActivityPresenter extends BasePresenter<ForAddFragment> imple
     private CompositeDisposable disposables = new CompositeDisposable();
     private PersonTasksDatabase db = App.getInstance().getDatabase();//получение базы
     private TaskDao taskDao = db.taskDao();//получение дао
-    private PersonTasks personTasks;// = new PersonTasks();
+    private Person personTasks;// = new Person();
     private DateBase dateBase;
 
 
@@ -33,7 +32,7 @@ public class ForAddActivityPresenter extends BasePresenter<ForAddFragment> imple
         dateBase = new DateBase(taskDao);
         Disposable disposableSingle = autorizationPreference.getUserName()
                 .flatMapCompletable(name -> {
-                    personTasks = new PersonTasks(name, task);
+                    personTasks = new Person(name, task);
                     return dateBase.setUserTask(personTasks);
                 })
                 .subscribeOn(Schedulers.io())
