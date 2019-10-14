@@ -1,22 +1,19 @@
 package by.egorgutko.autorization.data.RoomDB;
 
+import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import java.util.ArrayList;
+import java.util.List;
 
-import by.egorgutko.autorization.data.privatePreference.UserPreferencesInterface;
-import io.reactivex.Completable;
-import io.reactivex.Single;
+@Dao
+public interface TaskDao  {
 
-public interface TaskDao extends UserPreferencesInterface {
-    @Override
     @Insert
-    Completable setUserTask(String task);
+    void setTaskOfUSer(PersonTasks task);
 
-    @Override
-    @Query("SELECT * FROM  persontasks")
-    Single<ArrayList> getTaskList();
+    @Query("SELECT * FROM  persontask WHERE username = :name")
+    List<PersonTasks> getTaskList(String name);
 
 
 }

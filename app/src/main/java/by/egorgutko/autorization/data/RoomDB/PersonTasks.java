@@ -1,24 +1,39 @@
 package by.egorgutko.autorization.data.RoomDB;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.UUID;
 
-@Entity
+@Entity(tableName = "persontask")
 public class PersonTasks {
 
     @PrimaryKey
-    private String id;
-    private String username;
-    private String text;
+    @NonNull
+    public String id;
 
-    public PersonTasks(String name, String task) {
-        id = UUID.randomUUID().toString();
-        username = name;
-        text = task;
+    @ColumnInfo(name = "username")
+    public String name;
+
+    @ColumnInfo(name = "textForTask")
+    public String text;
+
+
+    public PersonTasks(){
+        this.id = UUID.randomUUID().toString();
+        this.name = "";
+        this.text = "";
     }
 
+    public PersonTasks(String name, String task) {
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.text = task;
+    }
+
+    public String getText() {
+        return text;
+    }
 }

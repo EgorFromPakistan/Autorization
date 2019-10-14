@@ -6,23 +6,24 @@ import androidx.room.Room;
 
 public class App extends Application {
 
-    private static  App instance;
+    public static App instance;
 
     private PersonTasksDatabase database;
 
     @Override
-    public void onCreate(){
+    public void onCreate() {
         super.onCreate();
         instance = this;
-        database = Room.databaseBuilder(this, PersonTasksDatabase.class, "database")
+        database = Room.databaseBuilder(this, PersonTasksDatabase.class, "persontask")
+                .allowMainThreadQueries()
                 .build();
     }
 
-    public static  App getInstance(){
+    public static App getInstance() {
         return instance;
     }
 
-    private PersonTasksDatabase getDatabase(){
+    public PersonTasksDatabase getDatabase() {
         return database;
     }
 }

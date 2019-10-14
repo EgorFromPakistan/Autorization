@@ -29,7 +29,7 @@ public class UserPreferences implements UserPreferencesInterface {
 
     public Single<ArrayList> getTaskList() {
         return Single.fromCallable(() -> {
-            Set<String> set = settings.getStringSet(KEY_SET, new HashSet<String>());
+            Set<String> set = settings.getStringSet(KEY_SET, new HashSet<>());
             return new ArrayList(set);
         });
     }
