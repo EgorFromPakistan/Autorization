@@ -29,7 +29,7 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
     private NavController navController;
 
     @Inject
-    ForAddActivityPresenter forAddActivityPresenter;
+    ForAddTaskPresenter forAddActivityPresenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
