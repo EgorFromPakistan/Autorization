@@ -26,6 +26,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import java.util.Objects;
 
+import javax.inject.Inject;
+
+import by.egorgutko.autorization.DI.AppComponent;
+import by.egorgutko.autorization.DI.DaggerAppComponent;
 import by.egorgutko.autorization.R;
 import by.egorgutko.autorization.presentation.Main.AdapterForRecyclerView;
 import by.egorgutko.autorization.presentation.login.LoginActivity;
@@ -35,12 +39,17 @@ public class ForListFragment extends Fragment implements ForListView {
     private NavController navController;
     private RecyclerView recyclerView;
     private TextView mTextView;
+    @Inject
+    ForListFragmentPresenter forListFragmentPresenter;
 
-    private ForListFragmentPresenter forListFragmentPresenter = new ForListFragmentPresenter();
+    //private ForListFragmentPresenter forListFragmentPresenter = new ForListFragmentPresenter();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+
+        AppComponent appComponent = DaggerAppComponent.builder().build();
         super.onCreate(savedInstanceState);
+        appComponent.injectForListPresenter(this);
         forListFragmentPresenter.attachView(this);
     }
 
@@ -62,7 +71,7 @@ public class ForListFragment extends Fragment implements ForListView {
             startActivity(intent);
         });
 
-        //forListFragmentPresenter.init(getContext());
+        //forListFragmentPresenter.userClickToAddTask(getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return view;
@@ -72,7 +81,7 @@ public class ForListFragment extends Fragment implements ForListView {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.d("myLog","мы тут");
-        forListFragmentPresenter.init(getContext());
+        forListFragmentPresenter.showTaskList(getContext());
     }
 
 

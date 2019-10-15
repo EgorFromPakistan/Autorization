@@ -4,6 +4,8 @@ import android.content.Context;
 
 import androidx.lifecycle.LifecycleObserver;
 
+import javax.inject.Inject;
+
 import by.egorgutko.autorization.data.RoomDB.App;
 import by.egorgutko.autorization.data.RoomDB.DateBase;
 import by.egorgutko.autorization.data.RoomDB.Person;
@@ -18,6 +20,12 @@ import io.reactivex.observers.DisposableCompletableObserver;
 import io.reactivex.schedulers.Schedulers;
 
 public class ForAddActivityPresenter extends BasePresenter<ForAddFragment> implements LifecycleObserver {
+
+    @Inject
+    ForAddActivityPresenter() {
+
+    }
+
     private AutorizationPreference autorizationPreference;
     private UserPreferences userPreferences;
     private CompositeDisposable disposables = new CompositeDisposable();
@@ -27,7 +35,7 @@ public class ForAddActivityPresenter extends BasePresenter<ForAddFragment> imple
     private DateBase dateBase;
 
 
-    public void init(Context context, String task) {
+    public void userClickToAddTask(Context context, String task) {
         autorizationPreference = AutorizationPreference.getPreference(context);
         dateBase = new DateBase(taskDao);
         Disposable disposableSingle = autorizationPreference.getUserName()

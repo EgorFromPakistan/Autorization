@@ -17,17 +17,25 @@ import androidx.navigation.Navigation;
 
 import java.util.Objects;
 
+import javax.inject.Inject;
+
+import by.egorgutko.autorization.DI.AppComponent;
+import by.egorgutko.autorization.DI.DaggerAppComponent;
 import by.egorgutko.autorization.R;
 
 public class ForAddFragment extends Fragment implements View.OnClickListener {
 
     private EditText editText;
     private NavController navController;
-    private ForAddActivityPresenter forAddActivityPresenter = new ForAddActivityPresenter();
+
+    @Inject
+    ForAddActivityPresenter forAddActivityPresenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        AppComponent appComponent = DaggerAppComponent.builder().build();
         super.onCreate(savedInstanceState);
+        appComponent.injectForAddFragmentPresenter(this);
         forAddActivityPresenter.attachView(this);
     }
 
@@ -50,7 +58,7 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onClick(View view) {
-        forAddActivityPresenter.init(getContext(), editText.getText().toString());
+        forAddActivityPresenter.userClickToAddTask(getContext(), editText.getText().toString());
         navController.popBackStack();
     }
 
@@ -61,7 +69,7 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
         forAddActivityPresenter.detachView();
     }
