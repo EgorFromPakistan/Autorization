@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -22,6 +23,7 @@ import javax.inject.Inject;
 import by.egorgutko.autorization.DI.DaggerMyAppComponent;
 import by.egorgutko.autorization.DI.MyAppComponent;
 import by.egorgutko.autorization.R;
+import by.egorgutko.autorization.databinding.FragmentForAddBinding;
 
 public class ForAddFragment extends Fragment implements View.OnClickListener {
 
@@ -47,10 +49,12 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup containre, Bundle saveInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_for_add, containre, false);
+
+        FragmentForAddBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_for_add, containre, false);
+        View view = binding.getRoot();
         navController = Navigation.findNavController(Objects.requireNonNull(getActivity()), R.id.nav_host_fragment);
-        editText = view.findViewById(R.id.etext);
-        Button button = view.findViewById(R.id.button);
+        editText = binding.etext;
+        Button button = binding.button;
         button.setOnClickListener(this);
 
         getLifecycle().addObserver(forAddActivityPresenter);
