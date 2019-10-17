@@ -7,9 +7,9 @@ import dagger.Provides;
 @Module
 public class ForAddTaskPresenterModule {
 
+    @ForModuleScope
     @Provides
     ForAddTaskPresenter provideForAddTaskPresenter() {
         return new ForAddTaskPresenter();
     }
-
 }

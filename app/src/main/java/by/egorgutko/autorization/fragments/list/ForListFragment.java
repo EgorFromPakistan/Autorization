@@ -28,8 +28,8 @@ import java.util.Objects;
 
 import javax.inject.Inject;
 
-import by.egorgutko.autorization.DI.AppComponent;
-import by.egorgutko.autorization.DI.DaggerAppComponent;
+import by.egorgutko.autorization.DI.DaggerMyAppComponent;
+import by.egorgutko.autorization.DI.MyAppComponent;
 import by.egorgutko.autorization.R;
 import by.egorgutko.autorization.presentation.Main.AdapterForRecyclerView;
 import by.egorgutko.autorization.presentation.login.LoginActivity;
@@ -42,14 +42,15 @@ public class ForListFragment extends Fragment implements ForListView {
     @Inject
     ForListFragmentPresenter forListFragmentPresenter;
 
-    //private ForListFragmentPresenter forListFragmentPresenter = new ForListFragmentPresenter();
+    /* private ForListFragmentPresenter forListFragmentPresenter = new ForListFragmentPresenter(); */
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
 
-        AppComponent appComponent = DaggerAppComponent.builder().build();
+        //AppComponent appComponent = DaggerAppComponent.builder().build();
+        MyAppComponent myAppComponent = DaggerMyAppComponent.builder().build();
+        myAppComponent.forListTaskComponent().inject(this);
         super.onCreate(savedInstanceState);
-        appComponent.injectForListPresenter(this);
         forListFragmentPresenter.attachView(this);
     }
 

@@ -4,6 +4,9 @@ import android.app.Application;
 
 import androidx.room.Room;
 
+import by.egorgutko.autorization.DI.ForAddTaskComponent;
+import by.egorgutko.autorization.DI.ForListTaskComponent;
+
 public class App extends Application {
 
     public static App instance;

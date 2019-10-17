@@ -7,8 +7,9 @@ import dagger.Provides;
 @Module
 public class ForListPresenterModule {
 
+    @ForModuleScope
     @Provides
-    ForListFragmentPresenter provideForListFragmentPresenter(){
-        return  new ForListFragmentPresenter();
+    ForListFragmentPresenter provideForListFragmentPresenter() {
+        return new ForListFragmentPresenter();
     }
 }

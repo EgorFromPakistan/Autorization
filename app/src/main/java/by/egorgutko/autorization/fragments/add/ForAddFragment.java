@@ -19,8 +19,8 @@ import java.util.Objects;
 
 import javax.inject.Inject;
 
-import by.egorgutko.autorization.DI.AppComponent;
-import by.egorgutko.autorization.DI.DaggerAppComponent;
+import by.egorgutko.autorization.DI.DaggerMyAppComponent;
+import by.egorgutko.autorization.DI.MyAppComponent;
 import by.egorgutko.autorization.R;
 
 public class ForAddFragment extends Fragment implements View.OnClickListener {
@@ -33,9 +33,11 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        AppComponent appComponent = DaggerAppComponent.builder().build();
+       // AppComponent appComponent = DaggerAppComponent.builder().build();
+        //ForAddTaskComponent forAddTaskComponent = DaggerForAddTaskComponent.builder().build();
+        MyAppComponent myAppComponent = DaggerMyAppComponent.builder().build();
+        myAppComponent.forAddTaskComponent().inject(this);
         super.onCreate(savedInstanceState);
-        appComponent.injectForAddFragmentPresenter(this);
         forAddActivityPresenter.attachView(this);
     }
 
