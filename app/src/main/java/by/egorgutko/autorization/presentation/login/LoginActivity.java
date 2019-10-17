@@ -10,8 +10,10 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import by.egorgutko.autorization.R;
+import by.egorgutko.autorization.databinding.ActivityLoginBinding;
 import by.egorgutko.autorization.presentation.Main.MainActivity;
 import io.reactivex.schedulers.Schedulers;
 
@@ -28,12 +30,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+        //setContentView(R.layout.activity_login);
         actionBar = getSupportActionBar();
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#93E9FA"));
         actionBar.setBackgroundDrawable(colorDrawable);
-        editText = findViewById(R.id.mEditText);
-        buttonOk = findViewById(R.id.mButton);
+        editText = binding.mEditText;
+        //editText = findViewById(R.id.mEditText);
+       // buttonOk = findViewById(R.id.mButton);
+        buttonOk = binding.mButton;
         buttonOk.setOnClickListener(this);
     }
 
