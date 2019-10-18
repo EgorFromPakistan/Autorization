@@ -20,6 +20,7 @@ import java.util.Objects;
 
 import javax.inject.Inject;
 
+import by.egorgutko.autorization.DI.DaggerController;
 import by.egorgutko.autorization.DI.DaggerMyAppComponent;
 import by.egorgutko.autorization.DI.MyAppComponent;
 import by.egorgutko.autorization.R;
@@ -29,6 +30,7 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
 
     private EditText editText;
     private NavController navController;
+    private DaggerController daggerController;
 
     @Inject
     ForAddTaskPresenter forAddActivityPresenter;
@@ -37,10 +39,13 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
     public void onCreate(@Nullable Bundle savedInstanceState) {
        /*
          AppComponent appComponent = DaggerAppComponent.builder().build();
-        ForAddTaskComponent forAddTaskComponent = DaggerForAddTaskComponent.builder().build();
+        ForAddTaskSubComponent forAddTaskComponent = DaggerForAddTaskComponent.builder().build();
         */
         MyAppComponent myAppComponent = DaggerMyAppComponent.builder().build();
-        myAppComponent.forAddTaskComponent().inject(this);
+        daggerController = new DaggerController(myAppComponent);
+        daggerController.initForAddTaskSubController();
+        daggerController.getForAddTAskComponent().inject(this);
+       // myAppComponent.forAddTaskComponent().inject(this);
         super.onCreate(savedInstanceState);
         forAddActivityPresenter.attachView(this);
     }

@@ -6,6 +6,6 @@ import dagger.Subcomponent;
 
 @ForModuleScope
 @Subcomponent(modules = ForListPresenterModule.class)
-public interface ForListTaskComponent {
+public interface ForListTaskSubComponent {
     void inject(ForListFragment forListFragment);
 }

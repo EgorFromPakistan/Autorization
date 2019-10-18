@@ -28,6 +28,7 @@ import java.util.Objects;
 
 import javax.inject.Inject;
 
+import by.egorgutko.autorization.DI.DaggerController;
 import by.egorgutko.autorization.DI.DaggerMyAppComponent;
 import by.egorgutko.autorization.DI.MyAppComponent;
 import by.egorgutko.autorization.R;
@@ -39,6 +40,7 @@ public class ForListFragment extends Fragment implements ForListView {
     private NavController navController;
     private RecyclerView recyclerView;
     private TextView mTextView;
+    private DaggerController daggerController;
     @Inject
     ForListFragmentPresenter forListFragmentPresenter;
 
@@ -47,9 +49,13 @@ public class ForListFragment extends Fragment implements ForListView {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
 
+
         //AppComponent appComponent = DaggerAppComponent.builder().build();
         MyAppComponent myAppComponent = DaggerMyAppComponent.builder().build();
-        myAppComponent.forListTaskComponent().inject(this);
+        daggerController = new DaggerController(myAppComponent);
+        daggerController.initForListSubComponent();
+        daggerController.getForListTaskSubComponent().inject(this);
+        //myAppComponent.forListTaskComponent().inject(this);
         super.onCreate(savedInstanceState);
         forListFragmentPresenter.attachView(this);
     }

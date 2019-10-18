@@ -1,11 +1,13 @@
 package by.egorgutko.autorization.DI;
 
-import by.egorgutko.autorization.DI.forAdd.ForAddTaskComponent;
-import by.egorgutko.autorization.DI.forList.ForListTaskComponent;
+import by.egorgutko.autorization.DI.forAdd.ForAddTaskPresenterModule;
+import by.egorgutko.autorization.DI.forAdd.ForAddTaskSubComponent;
+import by.egorgutko.autorization.DI.forList.ForListPresenterModule;
+import by.egorgutko.autorization.DI.forList.ForListTaskSubComponent;
 import dagger.Component;
 
 @Component
 public interface MyAppComponent {
-    ForAddTaskComponent forAddTaskComponent();
-    ForListTaskComponent forListTaskComponent();
+    ForAddTaskSubComponent add(ForAddTaskPresenterModule forAddTaskPresenterModule );
+    ForListTaskSubComponent add(ForListPresenterModule forListPresenterModule);
 }

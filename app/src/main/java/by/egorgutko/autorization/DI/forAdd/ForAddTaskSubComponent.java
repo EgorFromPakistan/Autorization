@@ -7,6 +7,6 @@ import dagger.Subcomponent;
 
 @ForModuleScope
 @Subcomponent(modules = ForAddTaskPresenterModule.class)
-public interface ForAddTaskComponent {
+public interface ForAddTaskSubComponent {
     void inject(ForAddFragment forAddFragment);
 }
