@@ -102,6 +102,51 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/numberPickerAmPm" />
 
+        <CheckBox
+            android:id="@+id/M"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="M"
+            app:layout_constraintEnd_toStartOf="@id/Tu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textviewDays" />
+
+        <CheckBox
+            android:id="@+id/Tu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tu"
+            app:layout_constraintEnd_toStartOf="@id/W"
+            app:layout_constraintStart_toEndOf="@id/M"
+            app:layout_constraintTop_toBottomOf="@id/textviewDays" />
+
+        <CheckBox
+            android:id="@+id/W"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="W"
+            app:layout_constraintEnd_toStartOf="@id/Th"
+            app:layout_constraintStart_toEndOf="@id/Tu"
+            app:layout_constraintTop_toBottomOf="@id/textviewDays" />
+
+        <CheckBox
+            android:id="@+id/Th"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Th"
+            app:layout_constraintEnd_toStartOf="@id/F"
+            app:layout_constraintStart_toEndOf="@id/W"
+            app:layout_constraintTop_toBottomOf="@id/textviewDays" />
+
+        <CheckBox
+            android:id="@+id/F"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="F"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/Th"
+            app:layout_constraintTop_toBottomOf="@id/textviewDays" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
