@@ -10,4 +10,11 @@
     <string name="toAdd">ДОБАВИТЬ</string>
     <string name="toSee">смотреть</string>
     <string name="addInToolbar">add</string>
+    <string name="addSchedulers">Add a New Event</string>
+    <string name="selectSchedulers">Select Mode:</string>
+    <string name="radioBnt1">Heat/Cool</string>
+    <string name="radioBtn2">Auto</string>
+    <string name="toSchedulers">to screen</string>
+    <string name="textforTime">Time:</string>
+    <string name="textforDays">Days:</string>
 </resources>

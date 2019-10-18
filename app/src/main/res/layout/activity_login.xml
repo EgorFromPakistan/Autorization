@@ -17,8 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
 
@@ -39,9 +37,18 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="@+id/mEditText"
         app:layout_constraintRight_toRightOf="@+id/mEditText"
-        app:layout_constraintTop_toBottomOf="@+id/mEditText"
+        app:layout_constraintTop_toBottomOf="@+id/mEditText" />
+
+    <Button
+        style="@style/myButtonStyle"
+        android:id="@+id/mButtonToScheduler"
+        android:text="@string/toSchedulers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/mButton"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.3"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

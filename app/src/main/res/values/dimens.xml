@@ -7,6 +7,8 @@
     <dimen name="text_size_15sp">15sp</dimen>
     <dimen name="radius_of_button_10dp">10dp</dimen>
     <dimen name="width_1dp">1dp</dimen>
+    <dimen name="forRadioButton_24dp">24dp</dimen>
+    <dimen name="forNumerOicker_16dp">16dp</dimen>
 
 
 </resources>

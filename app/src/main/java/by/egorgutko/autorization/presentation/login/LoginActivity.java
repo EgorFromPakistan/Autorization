@@ -15,6 +15,7 @@ import androidx.databinding.DataBindingUtil;
 import by.egorgutko.autorization.R;
 import by.egorgutko.autorization.databinding.ActivityLoginBinding;
 import by.egorgutko.autorization.presentation.Main.MainActivity;
+import by.egorgutko.autorization.presentation.Schedule.SchedulerActivity;
 import io.reactivex.schedulers.Schedulers;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -26,6 +27,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     EditText editText;
     Button buttonOk;
+    Button buttonToScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
        // buttonOk = findViewById(R.id.mButton);
         buttonOk = binding.mButton;
         buttonOk.setOnClickListener(this);
+        buttonToScreen = binding.mButtonToScheduler;
+        buttonToScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, SchedulerActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

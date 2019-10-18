@@ -1,0 +1,108 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_standart_16dp"
+        tools:context=".presentation.Schedule.SchedulerActivity">
+
+        <TextView
+            android:id="@+id/textview1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/addSchedulers"
+            android:textSize="@dimen/text_size_22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textviewSelectMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/selectSchedulers"
+            android:textSize="@dimen/text_size_22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textview1" />
+
+        <RadioGroup
+            android:id="@+id/myRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/textviewSelectMode">
+
+            <RadioButton
+                android:id="@+id/radio_heat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/forRadioButton_24dp"
+                android:text="@string/radioBnt1" />
+
+            <RadioButton
+                android:id="@+id/radio_cool"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/forRadioButton_24dp"
+                android:text="@string/radioBtn2" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textviewTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/textforTime"
+            android:textSize="@dimen/text_size_22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/myRadioGroup" />
+
+        <NumberPicker
+            android:id="@+id/numberPickerHour"
+            android:layout_width="@dimen/null_size_0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/numberPickerMinutes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textviewTime" />
+
+        <NumberPicker
+            android:id="@+id/numberPickerMinutes"
+            android:layout_width="@dimen/null_size_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/forNumerOicker_16dp"
+            android:layout_marginRight="@dimen/forNumerOicker_16dp"
+            app:layout_constraintEnd_toStartOf="@id/numberPickerAmPm"
+            app:layout_constraintStart_toEndOf="@id/numberPickerHour"
+            app:layout_constraintTop_toBottomOf="@id/textviewTime" />
+
+        <NumberPicker
+            android:id="@+id/numberPickerAmPm"
+            android:layout_width="@dimen/null_size_0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/numberPickerMinutes"
+            app:layout_constraintTop_toBottomOf="@id/textviewTime" />
+
+        <TextView
+            android:id="@+id/textviewDays"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/textforDays"
+            android:textSize="@dimen/text_size_22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/numberPickerAmPm" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
