@@ -37,33 +37,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_end="@dimen/padding_standart_16dp" />
+            app:layout_constraintGuide_end="16dp" />
 
         <TextView
             android:id="@+id/textview1"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/null_size_0dp"
             android:layout_height="wrap_content"
             android:text="@string/addSchedulers"
             android:textSize="@dimen/text_size_22sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@id/vertical_16dp"
+            app:layout_constraintEnd_toEndOf="@id/vertical_16dp_end"
+            app:layout_constraintTop_toBottomOf="@id/horizonatal_16dp" />
 
         <TextView
             android:id="@+id/textviewSelectMode"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/null_size_0dp"
             android:layout_height="wrap_content"
             android:text="@string/selectSchedulers"
             android:textSize="@dimen/text_size_22sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/vertical_16dp_end"
+            app:layout_constraintStart_toStartOf="@id/vertical_16dp"
             app:layout_constraintTop_toBottomOf="@id/textview1" />
 
         <RadioGroup
             android:id="@+id/myRadioGroup"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/null_size_0dp"
             android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/vertical_16dp"
+            app:layout_constraintEnd_toEndOf="@id/vertical_16dp_end"
             app:layout_constraintTop_toBottomOf="@id/textviewSelectMode">
 
             <RadioButton
@@ -84,13 +86,13 @@
 
         <TextView
             android:id="@+id/textviewTime"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/null_size_0dp"
             android:layout_height="wrap_content"
             android:text="@string/textforTime"
             android:textSize="@dimen/text_size_22sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/vertical_16dp_end"
+            app:layout_constraintStart_toStartOf="@id/vertical_16dp"
             app:layout_constraintTop_toBottomOf="@id/myRadioGroup" />
 
         <NumberPicker
@@ -98,7 +100,7 @@
             android:layout_width="@dimen/null_size_0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toStartOf="@id/numberPickerMinutes"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/vertical_16dp"
             app:layout_constraintTop_toBottomOf="@id/textviewTime" />
 
         <NumberPicker
@@ -115,19 +117,19 @@
             android:id="@+id/numberPickerAmPm"
             android:layout_width="@dimen/null_size_0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/vertical_16dp_end"
             app:layout_constraintStart_toEndOf="@id/numberPickerMinutes"
             app:layout_constraintTop_toBottomOf="@id/textviewTime" />
 
         <TextView
             android:id="@+id/textviewDays"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/null_size_0dp"
             android:layout_height="wrap_content"
             android:text="@string/textforDays"
             android:textSize="@dimen/text_size_22sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/vertical_16dp_end"
+            app:layout_constraintStart_toStartOf="@id/vertical_16dp"
             app:layout_constraintTop_toBottomOf="@id/numberPickerAmPm" />
 
         <CheckBox
@@ -195,32 +197,32 @@
 
         <TextView
             android:id="@+id/textviewTempereture1"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/null_size_0dp"
             android:layout_height="wrap_content"
             android:text="@string/textforTemperature1"
             android:textSize="@dimen/text_size_22sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/vertical_16dp_end"
+            app:layout_constraintStart_toStartOf="@id/vertical_16dp"
             app:layout_constraintTop_toBottomOf="@id/Su" />
 
         <NumberPicker
             android:id="@+id/numberPickerTemperature1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/vertical_16dp_end"
+            app:layout_constraintStart_toStartOf="@id/vertical_16dp"
             app:layout_constraintTop_toBottomOf="@+id/textviewTempereture1" />
 
         <TextView
             android:id="@+id/textviewTempereture2"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/null_size_0dp"
             android:layout_height="wrap_content"
             android:text="@string/textforTemperature2"
             android:textSize="@dimen/text_size_22sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/vertical_16dp_end"
+            app:layout_constraintStart_toStartOf="@id/vertical_16dp"
             app:layout_constraintTop_toBottomOf="@id/numberPickerTemperature1" />
 
         <NumberPicker
@@ -235,13 +237,13 @@
 
         <TextView
             android:id="@+id/textviewTempereture3"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/null_size_0dp"
             android:layout_height="wrap_content"
             android:text="@string/textforTemperature"
             android:textSize="@dimen/text_size_22sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/vertical_16dp_end"
+            app:layout_constraintStart_toStartOf="@id/vertical_16dp"
             app:layout_constraintTop_toBottomOf="@id/numberPickerTemperature2" />
 
         <NumberPicker
@@ -256,13 +258,13 @@
 
         <TextView
             android:id="@+id/textviewZone"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/null_size_0dp"
             android:layout_height="wrap_content"
             android:text="@string/textforApplyZone"
             android:textSize="@dimen/text_size_22sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/vertical_16dp_end"
+            app:layout_constraintStart_toStartOf="@id/vertical_16dp"
             app:layout_constraintTop_toBottomOf="@id/numberPickerTemperature3" />
 
         <CheckBox
@@ -295,7 +297,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btSave"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/horizonatal_16dp_end"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/Zone3" />
