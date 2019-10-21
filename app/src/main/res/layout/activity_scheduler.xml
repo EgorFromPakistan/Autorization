@@ -8,8 +8,36 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/padding_standart_16dp"
         tools:context=".presentation.Schedule.SchedulerActivity">
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/padding_standart_16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_16dp_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/padding_standart_16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizonatal_16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/padding_standart_16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizonatal_16dp_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="@dimen/padding_standart_16dp" />
 
         <TextView
             android:id="@+id/textview1"
@@ -46,7 +74,7 @@
                 android:text="@string/radioBnt1" />
 
             <RadioButton
-                android:id="@+id/radio_cool"
+                android:id="@+id/radio_auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/forRadioButton_24dp"
@@ -106,7 +134,7 @@
             android:id="@+id/M"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="M"
+            android:text="@string/cbM"
             app:layout_constraintEnd_toStartOf="@id/Tu"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textviewDays" />
@@ -115,7 +143,7 @@
             android:id="@+id/Tu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tu"
+            android:text="@string/cbTu"
             app:layout_constraintEnd_toStartOf="@id/W"
             app:layout_constraintStart_toEndOf="@id/M"
             app:layout_constraintTop_toBottomOf="@id/textviewDays" />
@@ -124,7 +152,7 @@
             android:id="@+id/W"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="W"
+            android:text="@string/cbW"
             app:layout_constraintEnd_toStartOf="@id/Th"
             app:layout_constraintStart_toEndOf="@id/Tu"
             app:layout_constraintTop_toBottomOf="@id/textviewDays" />
@@ -133,7 +161,7 @@
             android:id="@+id/Th"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Th"
+            android:text="@string/cbTh"
             app:layout_constraintEnd_toStartOf="@id/F"
             app:layout_constraintStart_toEndOf="@id/W"
             app:layout_constraintTop_toBottomOf="@id/textviewDays" />
@@ -142,10 +170,135 @@
             android:id="@+id/F"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="F"
+            android:text="@string/cbF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/Th"
             app:layout_constraintTop_toBottomOf="@id/textviewDays" />
+
+        <CheckBox
+            android:id="@+id/Sa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cbSa"
+            app:layout_constraintBottom_toTopOf="@id/textviewTempereture1"
+            app:layout_constraintStart_toStartOf="@id/M"
+            app:layout_constraintTop_toBottomOf="@id/F" />
+
+        <CheckBox
+            android:id="@+id/Su"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cbSu"
+            app:layout_constraintEnd_toStartOf="@id/W"
+            app:layout_constraintStart_toEndOf="@id/M"
+            app:layout_constraintTop_toBottomOf="@id/F" />
+
+        <TextView
+            android:id="@+id/textviewTempereture1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/textforTemperature1"
+            android:textSize="@dimen/text_size_22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Su" />
+
+        <NumberPicker
+            android:id="@+id/numberPickerTemperature1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textviewTempereture1" />
+
+        <TextView
+            android:id="@+id/textviewTempereture2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/textforTemperature2"
+            android:textSize="@dimen/text_size_22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/numberPickerTemperature1" />
+
+        <NumberPicker
+            android:id="@+id/numberPickerTemperature2"
+            android:layout_width="@dimen/null_size_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/forNumerOicker_16dp"
+            android:layout_marginRight="@dimen/forNumerOicker_16dp"
+            app:layout_constraintEnd_toStartOf="@id/numberPickerAmPm"
+            app:layout_constraintStart_toEndOf="@id/numberPickerHour"
+            app:layout_constraintTop_toBottomOf="@+id/textviewTempereture2" />
+
+        <TextView
+            android:id="@+id/textviewTempereture3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/textforTemperature"
+            android:textSize="@dimen/text_size_22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/numberPickerTemperature2" />
+
+        <NumberPicker
+            android:id="@+id/numberPickerTemperature3"
+            android:layout_width="@dimen/null_size_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/forNumerOicker_16dp"
+            android:layout_marginRight="@dimen/forNumerOicker_16dp"
+            app:layout_constraintEnd_toStartOf="@id/numberPickerAmPm"
+            app:layout_constraintStart_toEndOf="@id/numberPickerHour"
+            app:layout_constraintTop_toBottomOf="@+id/textviewTempereture3" />
+
+        <TextView
+            android:id="@+id/textviewZone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/textforApplyZone"
+            android:textSize="@dimen/text_size_22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/numberPickerTemperature3" />
+
+        <CheckBox
+            android:id="@+id/Zone1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zone1"
+            app:layout_constraintStart_toStartOf="@id/M"
+            app:layout_constraintTop_toBottomOf="@id/textviewZone" />
+
+        <CheckBox
+            android:id="@+id/Zone2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zone2"
+            app:layout_constraintStart_toStartOf="@id/M"
+            app:layout_constraintTop_toBottomOf="@id/Zone1" />
+
+        <CheckBox
+            android:id="@+id/Zone3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zone3"
+            app:layout_constraintStart_toStartOf="@id/M"
+            app:layout_constraintTop_toBottomOf="@id/Zone2" />
+
+        <Button
+            android:id="@+id/buttonSaveScheduler"
+            style="@style/myButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btSave"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Zone3" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

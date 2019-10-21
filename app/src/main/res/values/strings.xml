@@ -17,4 +17,19 @@
     <string name="toSchedulers">to screen</string>
     <string name="textforTime">Time:</string>
     <string name="textforDays">Days:</string>
+    <string name="textforTemperature1">Lower temperature, °F:</string>
+    <string name="textforTemperature2">Upper temperature, °F:</string>
+    <string name="textforTemperature">Temperature, °F:</string>
+    <string name="textforApplyZone">Apply to zones:</string>
+    <string name="zone1">Zone1: Living Room</string>
+    <string name="zone2">Zone2: Master Bedroom</string>
+    <string name="zone3">Zone3: Kids Bedroom</string>
+    <string name="cbM">M</string>
+    <string name="cbTu">Tu</string>
+    <string name="cbW">W</string>
+    <string name="cbTh">Th</string>
+    <string name="cbF">F</string>
+    <string name="cbSa">Sa</string>
+    <string name="cbSu">Su</string>
+    <string name="btSave">save</string>
 </resources>
