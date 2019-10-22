@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.NumberPicker;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.Group;
 
 import by.egorgutko.autorization.R;
 
@@ -19,17 +21,25 @@ public class SchedulerActivity extends AppCompatActivity {
     NumberPicker numberPickerTemp2;
     NumberPicker numberPickerTemp3;
 
-    RadioButton radioButtonHeat;
-    RadioButton radioButtonAuto;
+
+    RadioGroup radioGroup;
 
     TextView textViewUpper;
     TextView textViewLower;
     TextView textViewTemperature;
 
+    Group groupTwo;
+    Group groupOne;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scheduler);
+
+        groupTwo = findViewById(R.id.twoGroup);
+        groupOne = findViewById(R.id.oneGroup);
+
+        radioGroup = findViewById(R.id.myRadioGroup);
 
         textViewUpper = findViewById(R.id.textviewTempereture2);
         textViewLower = findViewById(R.id.textviewTempereture1);
@@ -65,31 +75,24 @@ public class SchedulerActivity extends AppCompatActivity {
         numberPickerTemp3.setMaxValue(100);
 
 
-        textViewTemperature.setVisibility(View.GONE);
-        numberPickerTemp3.setVisibility(View.GONE);
+        groupOne.setVisibility(View.GONE);
+        groupTwo.setVisibility(View.GONE);
 
-        radioButtonHeat = findViewById(R.id.radio_heat);
-        radioButtonHeat.setOnClickListener(view -> {
-            textViewUpper.setVisibility(View.GONE);
-            numberPickerTemp2.setVisibility(View.GONE);
-            textViewLower.setVisibility(View.GONE);
-            numberPickerTemp1.setVisibility(View.GONE);
-            textViewTemperature.setVisibility(View.VISIBLE);
-            numberPickerTemp3.setVisibility(View.VISIBLE);
+
+        radioGroup.setOnCheckedChangeListener((radioGroup, checkedId) -> {
+            switch (checkedId) {
+                case R.id.radio_auto:
+                    groupOne.setVisibility(View.GONE);
+                    groupTwo.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.radio_heat:
+                    groupOne.setVisibility(View.VISIBLE);
+                    groupTwo.setVisibility(View.GONE);
+                    break;
+                default:
+                    break;
+            }
         });
-
-
-        radioButtonAuto = findViewById(R.id.radio_auto);
-        radioButtonAuto.setChecked(true);
-        radioButtonAuto.setOnClickListener(view -> {
-            textViewUpper.setVisibility(View.VISIBLE);
-            numberPickerTemp2.setVisibility(View.VISIBLE);
-            textViewLower.setVisibility(View.VISIBLE);
-            numberPickerTemp1.setVisibility(View.VISIBLE);
-            textViewTemperature.setVisibility(View.GONE);
-            numberPickerTemp3.setVisibility(View.GONE);
-        });
-
 
 
     }
