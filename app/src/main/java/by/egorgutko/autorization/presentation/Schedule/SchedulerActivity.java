@@ -76,7 +76,6 @@ public class SchedulerActivity extends AppCompatActivity {
 
 
         groupOne.setVisibility(View.GONE);
-        groupTwo.setVisibility(View.GONE);
 
 
         radioGroup.setOnCheckedChangeListener((radioGroup, checkedId) -> {
