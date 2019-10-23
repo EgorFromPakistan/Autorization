@@ -35,8 +35,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         //setContentView(R.layout.activity_login);
         actionBar = getSupportActionBar();
-        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#93E9FA"));
-        actionBar.setBackgroundDrawable(colorDrawable);
         editText = binding.mEditText;
         //editText = findViewById(R.id.mEditText);
        // buttonOk = findViewById(R.id.mButton);
