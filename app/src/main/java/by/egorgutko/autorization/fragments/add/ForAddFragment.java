@@ -37,10 +37,6 @@ public class ForAddFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-       /*
-         AppComponent appComponent = DaggerAppComponent.builder().build();
-        ForAddTaskSubComponent forAddTaskComponent = DaggerForAddTaskComponent.builder().build();
-        */
         MyAppComponent myAppComponent = DaggerMyAppComponent.builder().build();
         daggerController = new DaggerController(myAppComponent);
         daggerController.initForAddTaskSubController();

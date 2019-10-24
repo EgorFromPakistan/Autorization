@@ -28,7 +28,7 @@ public class ForAddTaskPresenter extends BasePresenter<ForAddFragment> implement
 
 
     public void userClickToAddTask(Context context, String task) {
-        autorizationPreference = AutorizationPreference.getPreference(context);
+        autorizationPreference = AutorizationPreference.Companion.getPreference(context);
         dateBase = new DateBase(taskDao);
         Disposable disposableSingle = autorizationPreference.getUserName()
                 .flatMapCompletable(name -> {

@@ -27,7 +27,7 @@ public class ForListFragmentPresenter extends BasePresenter<ForListView> {
     public void showTaskList(Context context) {
         disposables = new CompositeDisposable();
         dateBase = new DateBase(taskDao);
-        autorizationPreference = AutorizationPreference.getPreference(context);
+        autorizationPreference = AutorizationPreference.Companion.getPreference(context);
         Disposable myDisposableSingle = autorizationPreference.getUserName()
                 .flatMap(name -> {
                     mView.showUserName(name);

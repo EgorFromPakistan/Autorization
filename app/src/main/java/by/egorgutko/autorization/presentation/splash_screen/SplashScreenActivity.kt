@@ -22,7 +22,7 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
 
         autorizationPreferenceSingleton = AutorizationPreference.getPreference(this)
-        autorizationPreferenceSingleton.userName
+        autorizationPreferenceSingleton.getUserName()
                 .subscribeOn(Schedulers.io())
                 .subscribe { currentName ->
                     if (currentName != null) {
