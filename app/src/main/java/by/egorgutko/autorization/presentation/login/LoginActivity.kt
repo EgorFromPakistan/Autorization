@@ -20,7 +20,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
 
     private var actionBar: ActionBar? = null
-    private var SAVED_TEXT = "saved_text"
+    private val SAVED_TEXT = "saved_text"
     private var loginPresenter = LoginPresenter()
 
     private lateinit var editText: EditText
