@@ -30,12 +30,12 @@ public class ForListFragmentPresenter extends BasePresenter<ForListView> {
         autorizationPreference = AutorizationPreference.Companion.getPreference(context);
         Disposable myDisposableSingle = autorizationPreference.getUserName()
                 .flatMap(name -> {
-                    mView.showUserName(name);
+                    getMView().showUserName(name);
                     return dateBase.getTaskList(name);
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(task -> mView.showUserData(task), throwable -> throwable.printStackTrace());
+                .subscribe(task -> getMView().showUserData(task), throwable -> throwable.printStackTrace());
         disposables.add(myDisposableSingle);
     }
 
