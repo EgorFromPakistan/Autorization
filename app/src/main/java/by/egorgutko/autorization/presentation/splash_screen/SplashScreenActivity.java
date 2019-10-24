@@ -24,10 +24,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         autorizationPreferenceSingleton = AutorizationPreference.getPreference(this);
-        //authorizationPreferences.userClickToAddTask(this);
         autorizationPreferenceSingleton.getUserName()
                 .subscribeOn(Schedulers.io())
-                //.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(currentName -> {
                     if(currentName != null){
                         Intent mainIntent = new Intent(SplashScreenActivity.this, MainActivity.class);
